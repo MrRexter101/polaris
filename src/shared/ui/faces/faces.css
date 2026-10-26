@@ -1,0 +1,6 @@
+/* Overlapping row of round portraits. .faces-lg for the larger size. */
+.faces { display: flex; flex: none; }
+.faces img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid #fff; margin-left: -12px; background: var(--mauve-300); }
+.faces img:first-child { margin-left: 0; }
+.faces-lg img { width: 52px; height: 52px; margin-left: -14px; }
+.faces-lg img:first-child { margin-left: 0; }

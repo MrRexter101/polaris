@@ -1,0 +1,58 @@
+/* Sticky header: ivory paper over the light page, plum over night sections (.is-night), plus the scroll progress line. */
+.progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 60; pointer-events: none; }
+.progress span { display: block; height: 100%; background: var(--amber); transform-origin: 0 50%; transform: scaleX(0); }
+
+.site-header {
+  position: sticky; top: 0; z-index: 50; height: var(--header-h);
+  background: rgba(255,248,243,.9); backdrop-filter: saturate(1.4) blur(14px);
+  transition: background-color 240ms ease, box-shadow 240ms ease;
+}
+.site-header.is-scrolled { background: rgba(255,248,243,.88); }
+.site-header.is-night { background: rgba(26,11,34,.86); color: #fff; }
+/* Apple-style scroll edge: a soft fade under the header instead of a hard rule */
+.site-header::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 14px; pointer-events: none; background: linear-gradient(rgba(38,17,49,.06), transparent); opacity: 0; transition: opacity 240ms ease; }
+.site-header.is-scrolled::after { opacity: 1; }
+@media (prefers-reduced-transparency: reduce) {
+  .site-header { backdrop-filter: none; background: #fff; }
+}
+
+.header-inner { height: 100%; display: flex; align-items: center; gap: 32px; }
+/* the mark swaps to its light version over night sections */
+.logo-night { display: none; }
+.is-night .logo-day { display: none; }
+.is-night .logo-night { display: block; }
+
+.nav { position: relative; display: flex; gap: 2px; margin-left: auto; }
+.nav a { position: relative; padding: 10px 14px; font-size: 15px; font-weight: 500; text-decoration: none; color: inherit; opacity: .78; transition: opacity 150ms ease; }
+.nav a.is-active { opacity: 1; }
+/* one amber bar slides to the current section's link (header.js sets --x and --w) */
+.nav-ink { position: absolute; left: 0; bottom: 4px; width: 100px; height: 2px; border-radius: 2px; background: var(--amber); transform-origin: 0 50%;
+  transform: translateX(var(--x, 0px)) scaleX(var(--w, 0)); opacity: var(--o, 0); transition: transform 520ms var(--ease-out), opacity 200ms ease; pointer-events: none; }
+@media (hover: hover) and (pointer: fine) { .nav a:hover { opacity: 1; } }
+
+.menu-btn, .mobile-menu { display: none; }
+
+@media (max-width: 1080px) {
+  .nav { display: none; }
+  .header-cta { margin-left: auto; }
+  .menu-btn { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; border-radius: 50%; color: inherit; }
+  .menu-lines, .menu-lines::before, .menu-lines::after { display: block; width: 20px; height: 2px; background: currentColor; border-radius: 2px; transition: transform 220ms var(--ease-ui); }
+  .menu-lines { position: relative; }
+  .menu-lines::before, .menu-lines::after { content: ""; position: absolute; left: 0; }
+  .menu-lines::before { top: -6px; }
+  .menu-lines::after { top: 6px; }
+  .menu-btn[aria-expanded=true] .menu-lines { background: transparent; }
+  .menu-btn[aria-expanded=true] .menu-lines::before { transform: translateY(6px) rotate(45deg); background: var(--plum-900); }
+  .menu-btn[aria-expanded=true] .menu-lines::after { transform: translateY(-6px) rotate(-45deg); background: var(--plum-900); }
+  .mobile-menu:not([hidden]) { display: grid; padding: 8px var(--gutter) 20px; background: var(--ivory); color: var(--plum-900); box-shadow: 0 16px 32px rgba(38,17,49,.14); animation: menu-in 240ms var(--ease-out); }
+  .mobile-menu.is-closing { animation: menu-out 160ms ease-in forwards; } /* leaves the way it came */
+  .mobile-menu a { padding: 16px 4px; font-weight: 600; font-size: 17px; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .site-header:has(.mobile-menu:not([hidden])) { background: var(--ivory); color: var(--plum-900); }
+}
+@media (max-width: 600px) {
+  .header-cta { display: none; }
+  .menu-btn { margin-left: auto; }
+}
+@keyframes menu-in { from { opacity: 0; transform: translateY(-8px); } }
+@keyframes menu-out { to { opacity: 0; transform: translateY(-8px); } }
+@media (prefers-reduced-motion: reduce) { .nav-ink { transition: opacity 200ms ease; } .mobile-menu.is-closing { animation-duration: 1ms; } }

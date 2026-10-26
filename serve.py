@@ -38,6 +38,7 @@ class RangeHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Cache-Control", "no-store")  # dev only: edits show on a plain reload
         super().end_headers()
 
 if __name__ == "__main__":

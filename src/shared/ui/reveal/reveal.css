@@ -1,0 +1,12 @@
+/* Entrances (reveal.js). CSS holds only the waiting state, and only under html.reveal-on, which the script
+   adds when motion is welcome, so content never depends on script. The motion itself runs as Web Animations,
+   so it never overrides an element's own hover and state transitions.
+     mask  headings rise from behind their own baseline
+     rise  text, cards and pictures lift a short way while they fade in, staggered within their group */
+/* a 1px sliver stays unclipped: browsers treat a fully clipped element as off screen and would never reveal it */
+.reveal-on [data-reveal="mask"]:not(.is-revealed) { clip-path: inset(0 0 calc(100% - 1px) 0); }
+.reveal-on [data-reveal="rise"]:not(.is-revealed) { opacity: 0; }
+/* printing (or any capture that never scrolls) shows everything */
+@media print {
+  .reveal-on [data-reveal] { opacity: 1 !important; clip-path: none !important; }
+}

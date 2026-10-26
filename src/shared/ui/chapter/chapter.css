@@ -1,0 +1,7 @@
+/* Chapter marker above a section heading: "— 01  Title". Draws in once (chapter.js adds .is-in). */
+.chapter { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; font: 600 13px/1.4 var(--font-body); letter-spacing: .04em; color: var(--ink-2); }
+.chapter span { position: relative; color: var(--brick); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .chapter { clip-path: inset(0 100% 0 0); transition: clip-path 900ms var(--ease-out); }
+  .js .chapter.is-in { clip-path: inset(0 0 0 0); }
+}

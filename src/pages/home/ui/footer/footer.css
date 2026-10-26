@@ -1,0 +1,36 @@
+/* Footer: the page ends at a horizon line with one small sail drifting along it. */
+.footer { position: relative; padding: calc(var(--sp) * .8 + 24px) 0 32px; color: var(--ink-night);
+  background: radial-gradient(60% 80% at 10% 0%, rgba(91,42,134,.25), transparent 70%), var(--plum-950); }
+.horizon { position: absolute; left: 0; right: 0; top: 34px; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,167,196,.45) 20%, rgba(201,167,196,.45) 80%, transparent); }
+.horizon-sail { position: absolute; left: 18%; bottom: -2px; width: 24px; height: 24px; opacity: .9; }
+@media (prefers-reduced-motion: no-preference) { .horizon-sail { animation: horizon-sail 60s linear infinite; } }
+@keyframes horizon-sail { from { left: 8%; } to { left: 88%; } }
+
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+.footer .brand-logo { height: 52px; }
+.footer .brand-rule { height: 34px; }
+.footer-addr { margin-top: 20px; font-size: 15px; line-height: 1.6; }
+.footer-addr a { color: #fff; }
+.footer-coords { margin-top: 14px; display: inline-flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: .06em; color: var(--mauve-300); font-variant-numeric: tabular-nums; }
+.footer-coords svg { width: 11px; height: 11px; fill: var(--amber); }
+.footer nav { display: grid; gap: 10px; align-content: start; }
+.footer nav a { text-decoration: none; font-size: 15px; width: fit-content; }
+@media (hover: hover) and (pointer: fine) { .footer nav a:hover { color: #fff; text-decoration: underline; } }
+.footer-h { color: #fff; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.footer-bottom { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line-night); font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; }
+.credits { font-size: 13px; color: rgba(234,215,226,.62); max-width: 70ch; }
+.credits a { color: inherit; }
+/* looks like part of the line; three quick presses (or a long press) open the admin page */
+.footer-star { display: inline-flex; padding: 6px; margin: -6px; cursor: default; -webkit-tap-highlight-color: transparent; user-select: none; }
+/* the name returns at full width as the page ends (footer.js sets --rise 0→1) */
+.footer-wordmark { margin: clamp(32px, 5vw, 64px) 0 0; overflow: hidden; text-align: center; line-height: .78; pointer-events: none; }
+.footer-wordmark span { display: block; font: 600 clamp(4.5rem, 21vw, 19rem)/.78 var(--font-display); letter-spacing: .02em; color: rgba(255,248,243,.07);
+  transform: translateY(calc((1 - var(--rise, 1)) * 45%)); }
+
+@media (max-width: 860px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .footer { padding-bottom: 104px; } /* room for the booking dock */
+}

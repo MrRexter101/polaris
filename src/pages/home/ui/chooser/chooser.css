@@ -1,0 +1,70 @@
+/* 01 Your route: "Which type of student are you?" from the poster.
+   The chosen track widens and opens its details; the grid columns glide between choices (chooser.js sets --cols). */
+.chooser-head { display: grid; grid-template-columns: 1fr minmax(0, 46ch); gap: 12px 48px; align-items: end; margin-bottom: clamp(32px, 4vw, 48px); }
+.chooser-head .chapter { grid-column: 1 / -1; margin-bottom: 0; }
+.chooser-head h2 { max-width: 14ch; }
+.chooser-head .body-lg { margin-top: 0; }
+
+.tracks { display: grid; grid-template-columns: var(--cols, 2fr 1fr 1fr); gap: 16px; align-items: start; transition: grid-template-columns 760ms var(--ease-out); }
+.track { position: relative; min-width: 0; border-radius: 28px; background: var(--white); box-shadow: var(--shadow-tile); transition: box-shadow 400ms ease, transform 400ms var(--ease-out); }
+.track.is-active { box-shadow: 0 0 0 1px rgba(26,11,34,.06), 0 4px 8px rgba(26,11,34,.05), 0 28px 60px rgba(26,11,34,.14); }
+
+.track-face { display: grid; width: 100%; padding: 10px 10px 20px; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; border-radius: 28px; }
+.track-face:active .track-img { transform: scale(.985); }
+/* card padding 10 + image radius 18 = outer radius 28 */
+.track-img { display: block; overflow: hidden; border-radius: 18px; aspect-ratio: 16 / 10; background: var(--blush-100); transition: transform 160ms var(--ease-ui); }
+.track-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); filter: saturate(.8); transition: transform 900ms var(--ease-out), filter 600ms ease; }
+.is-active .track-img img { transform: none; filter: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .is-active .track-img img { animation: track-drift 14s ease-in-out 900ms infinite alternate; }
+}
+@keyframes track-drift { from { transform: scale(1); } to { transform: scale(1.07) translate(-1.5%, -1%); } }
+.track-type { margin: 18px 10px 0; font-weight: 600; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--brick); }
+.track-title { margin: 6px 10px 0; font: 520 clamp(1.45rem, 2.1vw, 1.95rem)/1.1 var(--font-display); letter-spacing: -0.015em; text-wrap: balance; }
+/* the poster's amber pill */
+.track-pill { width: fit-content; margin: 14px 10px 0; padding: 7px 14px; border-radius: 999px; background: var(--amber); color: var(--amber-ink); font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+@media (hover: hover) and (pointer: fine) {
+  .track:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(26,11,34,.06), 0 4px 8px rgba(26,11,34,.05), 0 24px 52px rgba(26,11,34,.14); }
+  .track:not(.is-active) .track-face:hover .track-img img { transform: scale(1.04); filter: saturate(1); }
+}
+
+/* details open below the face of the chosen track */
+/* 0fr → 1fr opens to the content's real height without animating height itself */
+/* closed details are also invisible to keyboard and screen readers (visibility flips after the close finishes) */
+.track-detail { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows 640ms var(--ease-out), opacity 300ms ease, visibility 0s 640ms; }
+.is-active .track-detail { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition: grid-template-rows 760ms var(--ease-out), opacity 500ms ease 160ms, visibility 0s; }
+.track-detail-in { min-height: 0; overflow: hidden; display: grid; gap: 14px; justify-items: start; padding: 0 20px; }
+.track-detail-in > :last-child { margin-bottom: 24px; }
+.track-detail p { color: var(--ink-2); max-width: 52ch; }
+.track-unis { font-weight: 600; color: var(--ink) !important; }
+.track-unis span { display: block; margin-bottom: 2px; font-weight: 600; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+
+@media (max-width: 1080px) {
+  .tracks { --cols: 1fr 1fr 1fr !important; }
+}
+@media (max-width: 860px) {
+  .chooser-head { grid-template-columns: 1fr; }
+  .tracks { grid-template-columns: 1fr; }
+  .track-face { grid-template-columns: 120px 1fr; column-gap: 6px; align-items: center; padding: 10px; }
+  .track-img { grid-row: span 3; aspect-ratio: 1; }
+  .track-type { margin: 0 8px; }
+  .track-title { margin: 4px 8px 0; font-size: 1.35rem; }
+  .track-pill { margin: 8px 8px 0; font-size: 13px; padding: 5px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tracks, .track-detail, .is-active .track-detail, .track-img img { transition: none; }
+}
+
+/* fitted to one screen (base.css .screen): the heading takes one line, the pictures take the height left over,
+   and the open track lays its details out in two columns */
+@media (min-width: 1081px) and (min-height: 720px) {
+  .chooser-head h2 { max-width: none; }
+  .track-img { aspect-ratio: auto; height: clamp(100px, calc(var(--fit) - 498px), 340px); }
+  .track-detail-in { grid-template-columns: 1fr 1fr; column-gap: 24px; row-gap: 12px; align-items: start; }
+  .track-detail-in > p:first-child { grid-row: span 2; }
+}
+@media (min-width: 1081px) and (min-height: 720px) and (max-height: 760px) {
+  .track-type { margin-top: 12px; }
+  .track-pill { margin-top: 10px; }
+  .track-face { padding-bottom: 14px; }
+}

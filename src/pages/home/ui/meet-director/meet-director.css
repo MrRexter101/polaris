@@ -1,0 +1,6 @@
+/* 01 Meet the director: copy beside the YouTube film. */
+.video-sec { padding-top: calc(var(--sp) + 8px); }
+.video-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+@media (max-width: 860px) {
+  .video-grid { grid-template-columns: 1fr; }
+}

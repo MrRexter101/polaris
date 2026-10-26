@@ -1,0 +1,6 @@
+/* Stylesheet entry for /admin: the same tokens, base and buttons as the site, then the admin's own screens. */
+@import url("fonts.css");
+@import url("tokens.css");
+@import url("base.css");
+@import url("../../shared/ui/button/button.css");
+@import url("../../pages/admin/ui/admin.css");

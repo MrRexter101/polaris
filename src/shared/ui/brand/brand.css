@@ -1,0 +1,12 @@
+/* "POLARIS by Tradewind" lockup: sail mark, a thin rule, the wordmark. */
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+.brand-logo { height: 34px; width: auto; }
+.brand-rule { width: 1px; height: 28px; background: currentColor; opacity: .25; }
+.brand-text { display: grid; line-height: 1; }
+.brand-text strong { font: 600 20px/1 var(--font-display); letter-spacing: .16em; }
+.brand-text small { font-size: 13px; opacity: .7; margin-top: 4px; letter-spacing: .02em; }
+.brand-light { color: #fff; }
+@media (max-width: 600px) {
+  .brand-logo { height: 30px; }
+  .brand-text small { display: none; }
+}

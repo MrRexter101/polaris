@@ -1,0 +1,19 @@
+/* 10 Families: a parent film plus quote cards (placeholders until real, permissioned quotes arrive). */
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.quote { margin: 0; padding: 28px; border-radius: var(--r-lg); }
+.quote blockquote { margin: 0; font-size: 1.1rem; line-height: 1.55; }
+.quote figcaption { margin-top: 18px; font-size: 14px; color: var(--ink-2); font-weight: 600; }
+.quote.is-placeholder { border: 1.5px dashed var(--mauve-300); background: rgba(255,255,255,.55); }
+.placeholder-note { margin-top: 16px; font-size: 14px; color: var(--ink-2); }
+
+.quote-film { padding: 0; overflow: hidden; background: var(--plum-950); }
+.quote-film .video { border-radius: 0; box-shadow: none; aspect-ratio: 4 / 3; }
+.quote-film figcaption { margin: 0; padding: 16px 20px 18px; color: #EAD7E2; }
+
+@media (max-width: 860px) {
+  .proof-grid { grid-template-columns: 1fr; }
+}
+/* landscape phones: the three cards stay side by side */
+@media (orientation: landscape) and (max-height: 500px) {
+  .proof-grid { grid-template-columns: repeat(3, 1fr); }
+}

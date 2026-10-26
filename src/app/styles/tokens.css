@@ -1,0 +1,61 @@
+/* Design tokens. Every colour, font, radius, shadow and spacing step lives here.
+   Palette from the "Which type of student are you?" poster: aubergine ink, amber, brick,
+   on warm ivory, peach and blush. World: a campus at dusk, steered by one amber star. */
+:root {
+  /* palette */
+  --plum-950: #1A0B22;
+  --plum-900: #261131;       /* the poster's ink */
+  --plum-800: #3A1F4D;
+  --plum-700: #4E2A66;
+  --violet-600: #5B2A86;     /* links and focus, 9.5:1 on ivory */
+  --mauve-400: #A07A9E;
+  --mauve-300: #C9A7C4;
+  --peach-100: #FEE3C7;      /* the poster's sky */
+  --peach-50: #FFF1E6;
+  --blush-100: #FAE3DA;
+  --ivory: #FFF8F3;
+  --white: #fff;
+  --amber: #FFAE00;          /* the poster's pills: buttons */
+  --amber-ink: #331400;      /* text on amber, 12:1 */
+  --brick: #B44B1F;          /* labels and chapter numbers, 5.2:1 on ivory */
+
+  /* roles */
+  --ink: var(--plum-900);
+  --ink-2: #5C565F;          /* secondary text, 6.9:1 on ivory */
+  --ink-night: #EAD7E2;      /* secondary text on plum, 11:1 */
+  --line: rgba(38, 17, 49, .12);
+  --line-night: rgba(234, 215, 226, .16);
+  --base: var(--ivory);      /* page */
+  --base-2: var(--blush-100);/* alternate band */
+  --glow: rgba(255, 255, 255, .7);
+  --pool: rgba(201, 167, 196, .18);
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "General Sans", system-ui, -apple-system, sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-ui: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --shadow-2: 0 2px 4px rgba(38, 17, 49, .05), 0 16px 40px rgba(38, 17, 49, .12);
+  --shadow-3: 0 4px 8px rgba(26, 11, 34, .08), 0 32px 64px rgba(26, 11, 34, .18);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, .8) inset, 0 2px 4px rgba(26, 11, 34, .06), 0 24px 56px rgba(26, 11, 34, .12);
+  --shadow-tile: 0 0 0 1px rgba(26, 11, 34, .06), 0 2px 4px rgba(26, 11, 34, .05), 0 16px 36px rgba(26, 11, 34, .09);
+
+  /* layout and rhythm: section to section ≈ 2 × --sp; next to a film band ≈ --sp + --band */
+  --header-h: 68px;
+  --log-lift: 52px;          /* how far the log card overlaps the hero's foot */
+  --gutter: 20px;
+  --sp: clamp(64px, 7vw, 104px);
+  --band: clamp(12px, 1.6vw, 24px);
+}
+@media (max-width: 600px) {
+  :root { --gutter: 16px; --log-lift: 0px; }
+}
+/* landscape phones: a slimmer header leaves more of the short screen for the page */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root { --header-h: 56px; }
+}

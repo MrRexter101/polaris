@@ -5,19 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Polaris by Tradewind | IB, A-Level & UK/US Admissions Tutoring for International School Students</title>
 <meta name="description" content="1:1 tutoring and elite mentorship for international school students aged 11–18. IB, A-Level, IGCSE, AP/SAT, with mentors from Oxford, Cambridge, Harvard and Dartmouth. Book a free 30-minute consultation.">
-<meta property="og:title" content="Polaris by Tradewind Technologies">
-<meta property="og:description" content="Top grades now. A clear route to UK & US universities.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Polaris by Tradewind">
+<meta property="og:title" content="Polaris by Tradewind: top grades now, a clear route to UK and US universities">
+<meta property="og:description" content="1:1 tutoring and mentorship led by directors from Oxford, Cambridge, Harvard and Dartmouth. Book a free 30-minute consultation.">
+<meta property="og:image" content="https://mrrexter101.github.io/polaris/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com; media-src 'self'; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://mrrexter101.github.io/polaris/">
 <link rel="icon" href="assets/polaris-mark.png">
-<meta name="theme-color" content="#212B47">
-<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=supreme@500,700,800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add('js')</script>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#261131">
+<script src="src/app/boot.js"></script>
+<style>
+/* The opening voyage (intro.js). Inline so it is ready on the very first paint. */
+.intro { display: none; }
+.intro-on .intro, .intro.is-leaving { display: block; position: fixed; inset: 0; z-index: 300; overflow: hidden; }
+.intro-on .intro { animation: intro-failsafe 0s 6s forwards; } /* if scripts never run, it still steps aside */
+@keyframes intro-failsafe { to { visibility: hidden; } }
+.intro-half { position: absolute; left: 0; right: 0; height: 50.2%; transition: transform 1100ms cubic-bezier(.76,0,.24,1); }
+.intro-top { top: 0; background: radial-gradient(70% 60% at 50% 100%, rgba(254,227,199,.22), transparent 70%), linear-gradient(180deg, #1A0B22 0%, #261131 60%, #3A1F4D 100%); }
+.intro-bot { bottom: 0; background: radial-gradient(60% 50% at 50% 0%, rgba(255,174,0,.10), transparent 70%), linear-gradient(180deg, #2E163F 0%, #1A0B22 100%); }
+.intro-line { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: linear-gradient(90deg, transparent, rgba(254,227,199,.65) 30%, rgba(254,227,199,.65) 70%, transparent); transform-origin: 0 50%; animation: intro-draw 1400ms cubic-bezier(.16,1,.3,1) both; }
+.intro-sail { position: absolute; top: 50%; left: 0; width: 64px; height: 64px; margin-top: -58px; animation: intro-sail 2200ms cubic-bezier(.33,.66,.4,1) both; }
+.intro-sail svg { width: 100%; height: 100%; animation: intro-bob 2.6s ease-in-out infinite; transform-origin: 50% 90%; }
+.intro-wake { position: absolute; top: 50%; left: 0; height: 1px; width: 46vw; margin-top: 0; background: linear-gradient(90deg, transparent, #FFAE00); transform-origin: 0 50%; animation: intro-wake 2200ms cubic-bezier(.33,.66,.4,1) both; }
+.intro-star { position: absolute; left: 50%; top: 24%; width: 18px; height: 18px; margin-left: -9px; fill: #FFAE00; filter: drop-shadow(0 0 10px rgba(255,174,0,.7)); animation: intro-star 1200ms 400ms cubic-bezier(.16,1,.3,1) both; }
+.intro-word { position: absolute; left: 0; right: 0; top: calc(50% + 28px); margin: 0; text-align: center; font: 600 15px/1 "Fraunces", Georgia, serif; letter-spacing: .5em; text-indent: .5em; color: rgba(255,248,243,.82); animation: intro-word 900ms 700ms ease-out both; }
+.intro.is-leaving .intro-top { transform: translateY(-100%); }
+.intro.is-leaving .intro-bot { transform: translateY(100%); }
+.intro.is-leaving .intro-line, .intro.is-leaving .intro-word, .intro.is-leaving .intro-star, .intro.is-leaving .intro-wake { opacity: 0; transition: opacity 300ms ease; }
+.intro.is-leaving .intro-sail { opacity: 0; translate: 40vw -10px; transition: translate 1000ms cubic-bezier(.5,0,.75,0), opacity 600ms 300ms ease; }
+@keyframes intro-draw { from { transform: scaleX(0); } }
+@keyframes intro-sail { from { transform: translateX(-12vw); } to { transform: translateX(calc(50vw - 32px)); } }
+@keyframes intro-wake { from { transform: translateX(-46vw); } to { transform: translateX(calc(4vw - 32px)); } }
+@keyframes intro-bob { 50% { transform: translateY(-3px) rotate(-2deg); } }
+@keyframes intro-star { from { opacity: 0; transform: scale(.4) rotate(-40deg); } }
+@keyframes intro-word { from { opacity: 0; letter-spacing: .8em; } }
+@media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }
+</style>
+<!-- fonts and the first frame, fetched before anything else -->
+<link rel="preload" href="assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/general-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/video/campus-hero-poster.webp" as="image" fetchpriority="high">
+<!-- styles, in cascade order: tokens, base, shared UI, then each section top to bottom.
+     To add a section, add its CSS link here at its place on the page. -->
+<link rel="stylesheet" href="src/app/styles/fonts.css">
+<link rel="stylesheet" href="src/app/styles/tokens.css">
+<link rel="stylesheet" href="src/app/styles/base.css">
+<link rel="stylesheet" href="src/shared/ui/button/button.css">
+<link rel="stylesheet" href="src/shared/ui/brand/brand.css">
+<link rel="stylesheet" href="src/shared/ui/faces/faces.css">
+<link rel="stylesheet" href="src/shared/ui/chapter/chapter.css">
+<link rel="stylesheet" href="src/shared/ui/video-facade/video-facade.css">
+<link rel="stylesheet" href="src/shared/ui/reveal/reveal.css">
+<link rel="stylesheet" href="src/pages/home/ui/header/header.css">
+<link rel="stylesheet" href="src/pages/home/ui/hero/hero.css">
+<link rel="stylesheet" href="src/pages/home/ui/log/log.css">
+<link rel="stylesheet" href="src/pages/home/ui/chooser/chooser.css">
+<link rel="stylesheet" href="src/pages/home/ui/meet-director/meet-director.css">
+<link rel="stylesheet" href="src/pages/home/ui/interlude/interlude.css">
+<link rel="stylesheet" href="src/pages/home/ui/campus/campus.css">
+<link rel="stylesheet" href="src/pages/home/ui/package/package.css">
+<link rel="stylesheet" href="src/pages/home/ui/impact/impact.css">
+<link rel="stylesheet" href="src/pages/home/ui/directors/directors.css">
+<link rel="stylesheet" href="src/pages/home/ui/directors/director-sheet.css">
+<link rel="stylesheet" href="src/pages/home/ui/tutors/tutors.css">
+<link rel="stylesheet" href="src/pages/home/ui/how-it-works/how-it-works.css">
+<link rel="stylesheet" href="src/pages/home/ui/tradewind/tradewind.css">
+<link rel="stylesheet" href="src/pages/home/ui/results/results.css">
+<link rel="stylesheet" href="src/pages/home/ui/families/families.css">
+<link rel="stylesheet" href="src/pages/home/ui/consult/consult.css">
+<link rel="stylesheet" href="src/pages/home/ui/consult/form.css">
+<link rel="stylesheet" href="src/pages/home/ui/faq/faq.css">
+<link rel="stylesheet" href="src/pages/home/ui/paybar/paybar.css">
+<link rel="stylesheet" href="src/pages/home/ui/footer/footer.css">
+<link rel="stylesheet" href="src/pages/home/ui/contact-dock/contact-dock.css">
+<link rel="stylesheet" href="src/pages/home/ui/stack/stack.css">
+<!-- every script module, fetched in parallel instead of one import at a time -->
+<link rel="modulepreload" href="src/app/main.js">
+<link rel="modulepreload" href="src/pages/home/index.js">
+<link rel="modulepreload" href="src/shared/lib/index.js">
+<link rel="modulepreload" href="src/shared/lib/dom.js">
+<link rel="modulepreload" href="src/shared/lib/spring.js">
+<link rel="modulepreload" href="src/shared/lib/scroll-frame.js">
+<link rel="modulepreload" href="src/shared/lib/visibility.js">
+<link rel="modulepreload" href="src/shared/lib/fit-sticky.js">
+<link rel="modulepreload" href="src/shared/lib/scrub-video.js">
+<link rel="modulepreload" href="src/shared/config/index.js">
+<link rel="modulepreload" href="src/shared/config/contact.js">
+<link rel="modulepreload" href="src/shared/ui/index.js">
+<link rel="modulepreload" href="src/shared/ui/chapter/chapter.js">
+<link rel="modulepreload" href="src/shared/ui/video-facade/video-facade.js">
+<link rel="modulepreload" href="src/shared/ui/reveal/reveal.js">
+<link rel="modulepreload" href="src/pages/home/lib/night.js">
+<link rel="modulepreload" href="src/pages/home/model/results.js">
+<link rel="modulepreload" href="src/pages/home/ui/campus/campus.js">
+<link rel="modulepreload" href="src/pages/home/ui/chooser/chooser.js">
+<link rel="modulepreload" href="src/pages/home/ui/consult/consult-form.js">
+<link rel="modulepreload" href="src/pages/home/ui/consult/pathway-map.js">
+<link rel="modulepreload" href="src/pages/home/ui/contact-dock/contact-dock.js">
+<link rel="modulepreload" href="src/pages/home/ui/stack/stack.js">
+<link rel="modulepreload" href="src/pages/home/ui/stack/settle.js">
+<link rel="modulepreload" href="src/pages/home/ui/directors/director-sheet.js">
+<link rel="modulepreload" href="src/pages/home/ui/footer/footer.js">
+<link rel="modulepreload" href="src/pages/home/ui/header/header.js">
+<link rel="modulepreload" href="src/pages/home/ui/hero/hero.js">
+<link rel="modulepreload" href="src/pages/home/ui/how-it-works/voyage.js">
+<link rel="modulepreload" href="src/pages/home/ui/interlude/interlude.js">
+<link rel="modulepreload" href="src/pages/home/ui/interlude/study-film.js">
+<link rel="modulepreload" href="src/pages/home/ui/intro/intro.js">
+<link rel="modulepreload" href="src/pages/home/ui/package/odometer.js">
+<link rel="modulepreload" href="src/pages/home/ui/package/price-card.js">
+<link rel="modulepreload" href="src/pages/home/ui/results/results.js">
+<link rel="modulepreload" href="src/pages/home/ui/tradewind/tradewind.js">
+<link rel="modulepreload" href="src/pages/home/ui/tutors/tutors.js">
 </head>
 <body>
+<div class="intro" data-intro aria-hidden="true">
+  <div class="intro-half intro-top"></div>
+  <div class="intro-half intro-bot"></div>
+  <svg class="intro-star" viewBox="0 0 24 24"><path d="M12 0L14 7.86L21.38 4.52L16.48 10.98L23.7 14.67L15.6 14.87L17.21 22.81L12 16.6L6.79 22.81L8.4 14.87L.3 14.67L7.52 10.98L2.62 4.52L10 7.86Z"/></svg>
+  <span class="intro-line"></span>
+  <span class="intro-wake"></span>
+  <span class="intro-sail"><svg viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#FFF8F3"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#C9A7C4"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#FFF8F3"/></svg></span>
+  <p class="intro-word">POLARIS</p>
+</div>
 <a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"><span></span></div>
 
@@ -25,8 +142,8 @@
   <symbol id="star" viewBox="0 0 24 24"><path d="M12 0L14 7.86L21.38 4.52L16.48 10.98L23.7 14.67L15.6 14.87L17.21 22.81L12 16.6L6.79 22.81L8.4 14.87L.3 14.67L7.52 10.98L2.62 4.52L10 7.86Z"/></symbol>
   <symbol id="play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5Z"/></symbol>
   <symbol id="pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></symbol>
-  <symbol id="boat" viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#212B47"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#3A4A76"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#212B47"/></symbol>
-  <symbol id="boat-light" viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#E6F2FC"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#95A4CD"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#E6F2FC"/></symbol>
+  <symbol id="boat" viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#261131"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#4E2A66"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#261131"/></symbol>
+  <symbol id="boat-light" viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#FFF1E6"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#C9A7C4"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#FFF1E6"/></symbol>
   <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
@@ -39,19 +156,22 @@
       <span class="brand-text"><strong>POLARIS</strong><small>by Tradewind</small></span>
     </a>
     <nav class="nav" aria-label="Main">
+      <a href="#pathway">Your route</a>
       <a href="#package">Package</a>
       <a href="#mentors">Mentors</a>
       <a href="#tutors">Tutors</a>
       <a href="#how">How it works</a>
       <a href="#tradewind">Tradewind</a>
       <a href="#faq">FAQ</a>
+      <span class="nav-ink" aria-hidden="true"></span>
     </nav>
     <a class="btn btn-primary btn-sm header-cta" href="#consult">Book free consultation</a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="mobile-menu" data-menu-btn>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mobile-menu" data-menu-btn>
       <span class="sr-only">Menu</span><span class="menu-lines" aria-hidden="true"></span>
     </button>
   </div>
   <div class="mobile-menu" id="mobile-menu" hidden data-menu>
+    <a href="#pathway">Your route</a>
     <a href="#package">Package</a>
     <a href="#mentors">Mentors</a>
     <a href="#tutors">Tutors</a>
@@ -65,14 +185,16 @@
 <!-- HERO: inset film -->
 <section class="hero" id="top">
   <div class="hero-frame">
-    <video class="hero-video" data-film autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.webp" src="assets/video/hero.mp4" aria-hidden="true"></video>
+    <video class="hero-video" data-film autoplay muted loop playsinline preload="auto" poster="assets/video/campus-hero-poster.webp" aria-hidden="true">
+      <source media="(max-width: 700px) and (orientation: portrait)" src="assets/video/campus-hero-portrait.mp4" type="video/mp4">
+      <source src="assets/video/campus-hero.mp4" type="video/mp4">
+    </video>
     <div class="hero-shade" aria-hidden="true"></div>
-    <div class="hero-mist" aria-hidden="true"><i></i><i></i></div>
     <div class="hero-inner">
-      <h1 class="hero-in">Top grades now.<br>A clear route to <span class="nowrap">UK &amp; US</span> universities.</h1>
+      <h1 class="hero-title"><span class="line"><span>Top grades now.</span></span> <span class="line"><span>A clear route to <span class="nowrap">UK &amp; US</span> universities.</span></span></h1>
       <p class="lede hero-in">1:1 tutoring and elite mentorship for international school students aged 11–18, guided by mentors from Oxford, Cambridge, Harvard and Dartmouth.</p>
       <div class="hero-ctas hero-in">
-        <a class="btn btn-light btn-lg" href="#consult">Book a free 30-min consultation<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="btn btn-primary btn-lg" href="#consult">Book a free 30-min consultation<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
         <a class="btn btn-glass btn-lg" href="#package">See the package</a>
       </div>
       <ul class="reassure hero-in">
@@ -82,7 +204,7 @@
     </div>
     <p class="hero-meta" aria-hidden="true">A Tradewind programme <svg><use href="#star"/></svg> Singapore</p>
     <p class="hero-scroll" aria-hidden="true">Scroll <span></span></p>
-    <button class="film-toggle" data-film-toggle aria-label="Pause background film"><svg aria-hidden="true"><use href="#pause"/></svg></button>
+    <button type="button" class="film-toggle" data-film-toggle aria-label="Pause background film"><svg aria-hidden="true"><use href="#pause"/></svg></button>
   </div>
 </section>
 
@@ -91,10 +213,10 @@
   <div class="wrap log-inner">
     <div class="log-faces">
       <div class="faces">
-        <img src="assets/ian.webp" alt="" width="44" height="44">
-        <img src="assets/maxime.webp" alt="" width="44" height="44">
-        <img src="assets/lotus.webp" alt="" width="44" height="44">
-        <img src="assets/francis.webp" alt="" width="44" height="44">
+        <img src="assets/faces/ian.webp" alt="" width="44" height="44">
+        <img src="assets/faces/maxime.webp" alt="" width="44" height="44">
+        <img src="assets/faces/lotus.webp" alt="" width="44" height="44">
+        <img src="assets/faces/francis.webp" alt="" width="44" height="44">
       </div>
       <p>Directors from <strong>Oxford, Cambridge, Harvard, Dartmouth</strong> and the <strong>Pasteur Institute</strong></p>
     </div>
@@ -107,18 +229,74 @@
   </div>
 </section>
 
+
+<!-- PATHWAY CHOOSER: from the "Which type of student are you?" poster -->
+<section class="section screen chooser-sec bg-base" id="pathway" aria-labelledby="chooser-h">
+  <div class="wrap">
+    <div class="chooser-head">
+      <p class="chapter"><span>— 01</span> Your route</p>
+      <h2 id="chooser-h">Which type of student are you?</h2>
+      <p class="body-lg">Tradewind runs two programmes for three kinds of ambition. Choose the one that sounds like your child; we'll tell you honestly if another route fits better.</p>
+    </div>
+    <div class="tracks" data-routes>
+      <article class="track is-active" data-route-card>
+        <button class="track-face" type="button" aria-expanded="true" aria-controls="track-1">
+          <span class="track-img"><img src="assets/campus/radcliffe.webp" alt="" width="1600" height="1200" loading="lazy"></span>
+          <span class="track-type">Type I · Elite universities</span>
+          <span class="track-title">Make the top 10%</span>
+          <span class="track-pill">Polaris · ages 14+</span>
+        </button>
+        <div class="track-detail" id="track-1">
+          <div class="track-detail-in">
+          <p>Bespoke, high-impact mentorship from directors with professional credentials, not unproven college students.</p>
+          <p class="track-unis"><span>Aiming for</span>MIT, Harvard, Yale, Princeton, Stanford, the Ivy League and Oxbridge</p>
+          <a class="btn btn-primary" href="#consult">Book a free consultation<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+        </div>
+      </article>
+      <article class="track" data-route-card>
+        <button class="track-face" type="button" aria-expanded="false" aria-controls="track-2">
+          <span class="track-img"><img src="assets/campus/sather-tower.webp" alt="" width="1600" height="1200" loading="lazy"></span>
+          <span class="track-type">Type II · Top 20, faster</span>
+          <span class="track-title">Lock in the sure win</span>
+          <span class="track-pill">Odyssey · ages 14–16</span>
+        </button>
+        <div class="track-detail" id="track-2">
+          <div class="track-detail-in">
+          <p>Rather than chasing a ten percent chance, secure a strong top-20 place, and get there sooner than anyone in your year.</p>
+          <p class="track-unis"><span>Aiming for</span>UC Berkeley, UCLA, UC San Diego and NYU</p>
+          <a class="btn btn-dark" href="https://www.tradewind-tech.com/odyssey-home" target="_blank" rel="noopener">Explore Odyssey<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+        </div>
+      </article>
+      <article class="track" data-route-card>
+        <button class="track-face" type="button" aria-expanded="false" aria-controls="track-3">
+          <span class="track-img"><img src="assets/campus/columbia.webp" alt="" width="1600" height="1200" loading="lazy"></span>
+          <span class="track-type">Type III · Juniors and seniors</span>
+          <span class="track-title">Graduation is next year</span>
+          <span class="track-pill">Odyssey · ages 17–18</span>
+        </button>
+        <div class="track-detail" id="track-3">
+          <div class="track-detail-in">
+          <p>Already in Grade 11 or 12? Odyssey has a route built for the time you have left.</p>
+          <p class="track-unis"><span>Aiming for</span>Top 30 US universities, including UC Irvine</p>
+          <a class="btn btn-dark" href="https://www.tradewind-tech.com/odyssey-home" target="_blank" rel="noopener">Explore Odyssey<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- VIDEO -->
-<section class="section video-sec" aria-labelledby="video-h">
+<section class="section screen video-sec bg-base latitude" aria-labelledby="video-h">
   <div class="wrap video-grid">
     <div class="video-copy">
-      <p class="chapter"><span>— 01</span> Meet the director</p>
-      <h2 id="video-h">Meet the director who leads your child's mentor session.</h2>
+      <p class="chapter"><span>— 02</span> Meet the director</p>
+      <h2 id="video-h">Meet the director who mentors your child.</h2>
       <p class="body-lg">Ian Caddy (BA Hons, Oxford) has spent 15+ years in international schools and universities across Asia, and specialises in IELTS and UK university preparation.</p>
       <a class="link-arrow" href="#mentors">Meet all four directors<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
     <div class="video" data-video="F4wYb0xoaD8">
-      <button class="video-facade" aria-label="Play video: Ian Caddy on the Polaris programme">
-        <img src="https://i.ytimg.com/vi/F4wYb0xoaD8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+      <button type="button" class="video-facade" aria-label="Play video: Ian Caddy on the Polaris programme">
+        <img src="https://i.ytimg.com/vi/F4wYb0xoaD8/maxresdefault.jpg" alt="" width="1280" height="720" decoding="async">
         <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
         <span class="video-tag">Watch · 2 min</span>
       </button>
@@ -130,7 +308,7 @@
 <section class="interlude" data-expand aria-label="One-to-one sessions">
   <div class="interlude-frame">
     <div class="study-stage" data-study>
-      <video data-scrub muted playsinline preload="auto" poster="assets/video/study-poster.webp" src="assets/video/study.mp4" aria-hidden="true"></video>
+      <video data-scrub muted playsinline preload="none" poster="assets/video/study-poster.webp" src="assets/video/study.mp4" aria-hidden="true"></video>
     </div>
     <div class="interlude-shade" aria-hidden="true"></div>
     <p class="interlude-line">Eleven one-to-one sessions, fifty minutes each, planned around your child's curriculum.</p>
@@ -138,11 +316,11 @@
 </section>
 
 <!-- PACKAGE -->
-<section class="section package-sec" id="package" aria-labelledby="pkg-h">
+<section class="section screen package-sec bg-band" id="package" aria-labelledby="pkg-h">
   <div class="wrap package-grid">
     <div class="package-copy">
-      <p class="chapter"><span>— 02</span> The package</p>
-      <h2 id="pkg-h">One package: tutoring, mentorship and someone keeping it on track.</h2>
+      <p class="chapter"><span>— 03</span> The package</p>
+      <h2 id="pkg-h">Tutoring, mentoring and a manager, in one package.</h2>
       <dl class="cover">
         <div class="cover-row"><dt>Curriculum mastery</dt><dd>IB Diploma, A-Levels, IGCSE, ACT/SAT/AP, and GPA care for every subject.</dd></div>
         <div class="cover-row"><dt>Foundational core</dt><dd>Core and advanced writing with IELTS, core and advanced maths (G8–13), science foundations.</dd></div>
@@ -155,7 +333,7 @@
         <h3 id="price-h">The Polaris package</h3>
         <span class="badge">Save $100</span>
       </div>
-      <p class="price"><span class="amount" aria-label="$880">$<span class="odo" data-odo="880" aria-hidden="true">880</span></span><span class="cur">SGD</span><s aria-label="was $980">$980</s></p>
+      <p class="price"><span class="sr-only">$880 SGD, was $980</span><span class="amount" aria-hidden="true">$<span class="odo" data-odo="880">880</span></span><span class="cur" aria-hidden="true">SGD</span><s aria-hidden="true">$980</s></p>
       <p class="price-sub">That's $80 per 50-minute session, with the director session included free. <span title="Approximate, based on current exchange rates">≈ ฿22,000 THB.</span></p>
       <ul class="ticks">
         <li>11 tutorials, 50 minutes each</li>
@@ -174,14 +352,14 @@
 </section>
 
 <!-- IMPACT PROJECTS -->
-<section class="section impact-sec" aria-labelledby="impact-h">
+<section class="section screen impact-sec" aria-labelledby="impact-h">
   <div class="wrap impact-grid">
     <figure class="impact-photo">
-      <img src="assets/maxime-portrait.webp" alt="Dr. Maxime Herve, STEM Program Director" width="900" height="898" loading="lazy">
+      <img src="assets/maxime-portrait.webp" alt="Dr. Maxime Herve, STEM Program Director" width="1200" height="1197" loading="lazy">
       <figcaption>Dr. Maxime Herve · STEM Program Director</figcaption>
     </figure>
     <div class="impact-copy">
-      <p class="chapter"><span>— 03</span> Impact projects</p>
+      <p class="chapter"><span>— 04</span> Impact projects</p>
       <h2 id="impact-h">Impact projects: real-world work universities notice.</h2>
       <p class="body-lg">Students identify a real problem, design a solution and build a measurable project in research, technology, finance, education, sustainability or community impact, guided by mentors from Oxford, Cambridge, Stanford and the Ivy League.</p>
       <div class="lead">
@@ -200,67 +378,77 @@
   </div>
 </section>
 
-<!-- INTERLUDE: library film -->
-<section class="interlude" data-expand aria-label="Impact projects and research">
-  <div class="interlude-frame">
-    <video data-film muted loop playsinline preload="none" poster="assets/video/library-poster.webp" src="assets/video/library.mp4" aria-hidden="true"></video>
-    <div class="interlude-shade" aria-hidden="true"></div>
-    <p class="interlude-line">Guided by mentors from Oxford, Cambridge, Stanford and the Ivy League.</p>
+<!-- CAMPUS SCENE: pinned; the scroll carries the film from the library to each campus -->
+<section class="campus-scene" data-campus aria-label="Where our mentors studied">
+  <div class="campus-sticky">
+    <div class="campus-frame">
+      <video data-campus-film muted playsinline preload="none" poster="assets/video/campus-reel-poster.webp" src="assets/video/campus-reel.mp4" aria-hidden="true"></video>
+      <div class="campus-shade" aria-hidden="true"></div>
+      <p class="campus-line">Guided by mentors from <b data-at=".18">Oxford</b>, <b data-at=".38">Cambridge</b>, <b data-at=".58">Stanford</b> and <b data-at=".77">the&nbsp;Ivy&nbsp;League</b>.</p>
+      <ol class="campus-places" aria-hidden="true">
+        <li data-at="0">The reading room</li>
+        <li data-at=".18">Bodleian Library, Oxford</li>
+        <li data-at=".38">The River Cam, Cambridge</li>
+        <li data-at=".58">Main Quad, Stanford</li>
+        <li data-at=".77">Columbia and Penn</li>
+      </ol>
+      <span class="campus-track" aria-hidden="true"><i></i></span>
+    </div>
   </div>
 </section>
 
 <!-- MENTORS -->
-<section class="section" id="mentors" aria-labelledby="mentors-h">
+<section class="section screen mentors-sec bg-base latitude" id="mentors" aria-labelledby="mentors-h">
   <div class="wrap">
-    <p class="chapter"><span>— 04</span> Programme directors</p>
+    <p class="chapter"><span>— 05</span> Programme directors</p>
     <h2 id="mentors-h" class="section-h">Your child's mentor session is led by one of four directors.</h2>
     <div class="mentor-grid">
       <button class="mentor" type="button" data-dir="ian" aria-haspopup="dialog" aria-label="Ian Caddy, UK Program Director. Open profile">
-        <span class="mentor-img"><img src="assets/ian.webp" alt="" width="900" height="818" loading="lazy"><span class="mentor-plus" aria-hidden="true">+</span></span>
+        <span class="mentor-img"><img src="assets/ian.webp" alt="" width="1200" height="1091" loading="lazy"><span class="mentor-plus" aria-hidden="true">+</span></span>
         <span class="mentor-text"><span class="mentor-name">Ian Caddy</span><span class="role">UK Program Director</span>
         <span class="mentor-lines"><span>BA (Hons), University of Oxford</span><span>15+ years in Asian international schools</span><span>IELTS preparation expert</span></span></span>
       </button>
       <button class="mentor" type="button" data-dir="maxime" aria-haspopup="dialog" aria-label="Dr. Maxime Herve, STEM Program Director. Open profile">
-        <span class="mentor-img"><img src="assets/maxime.webp" alt="" width="795" height="717" loading="lazy"><span class="mentor-plus" aria-hidden="true">+</span></span>
+        <span class="mentor-img"><img src="assets/maxime.webp" alt="" width="1188" height="1200" loading="lazy"><span class="mentor-plus" aria-hidden="true">+</span></span>
         <span class="mentor-text"><span class="mentor-name">Dr. Maxime Herve</span><span class="role">STEM Program Director</span>
         <span class="mentor-lines"><span>Ph.D., Pasteur Institute, Paris</span><span>Postdoc, Hospital for Special Surgery</span><span>Sr. Research Investigator, Novartis</span></span></span>
       </button>
       <button class="mentor" type="button" data-dir="lotus" aria-haspopup="dialog" aria-label="Lotus S. Kim, US Program Director. Open profile">
-        <span class="mentor-img"><img src="assets/lotus.webp" alt="" width="577" height="900" loading="lazy"><span class="mentor-plus" aria-hidden="true">+</span></span>
+        <span class="mentor-img"><img src="assets/lotus.webp" alt="" width="769" height="1200" loading="lazy"><span class="mentor-plus" aria-hidden="true">+</span></span>
         <span class="mentor-text"><span class="mentor-name">Lotus S. Kim</span><span class="role">US Program Director</span>
         <span class="mentor-lines"><span>BA, Dartmouth College</span><span>LLM, University of Cambridge</span><span>Former Head of Legal, LINE MAN Wongnai</span></span></span>
       </button>
-      <button class="mentor" type="button" data-dir="francis" aria-haspopup="dialog" aria-label="Dr. Francis Kim, Founder. Open profile">
-        <span class="mentor-img"><img src="assets/francis.webp" alt="" width="481" height="586" loading="lazy"><span class="mentor-plus" aria-hidden="true">+</span></span>
-        <span class="mentor-text"><span class="mentor-name">Dr. Francis Kim</span><span class="role">Founder</span>
-        <span class="mentor-lines"><span>DPhil, Oxford (Merton)</span><span>MPA, Harvard (Samsung Scholar)</span><span>Former Strategist, Goldman Sachs Asia-Pacific</span></span></span>
+      <button class="mentor" type="button" data-dir="francis" aria-haspopup="dialog" aria-label="Professor Francis Kim, Founder. Open profile">
+        <span class="mentor-img"><img src="assets/francis.webp" alt="" width="962" height="1172" loading="lazy"><span class="mentor-plus" aria-hidden="true">+</span></span>
+        <span class="mentor-text"><span class="mentor-name">Prof. Francis Kim</span><span class="role">Founder</span>
+        <span class="mentor-lines"><span>Asst. Professor, Chulalongkorn University</span><span>Adjunct Professor, Yonsei University</span><span>DPhil, Oxford (Merton) · MPA, Harvard</span></span></span>
       </button>
     </div>
   </div>
 </section>
 
 <!-- TUTORS -->
-<section class="section tutors-sec" id="tutors" aria-labelledby="tutors-h">
+<section class="section screen tutors-sec bg-band" id="tutors" aria-labelledby="tutors-h">
   <div class="wrap section-h-row">
     <div>
-      <p class="chapter"><span>— 05</span> Tutors</p>
+      <p class="chapter"><span>— 06</span> Tutors</p>
       <h2 id="tutors-h">Tutors matched to your child's curriculum.</h2>
       <p class="body-lg">From a network of 30+ educators.</p>
     </div>
     <div class="carousel-ctrl">
-      <button class="icon-btn" data-scroll="-1" aria-label="Previous tutors"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-      <button class="icon-btn" data-scroll="1" aria-label="Next tutors"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <button type="button" class="icon-btn" data-scroll="-1" aria-label="Previous tutors"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <button type="button" class="icon-btn" data-scroll="1" aria-label="Next tutors"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
   </div>
   <div class="tutor-track" data-track tabindex="0" aria-label="Tutors, scroll horizontally">
-    <article class="tutor"><img src="assets/emily.webp" alt="Emily" width="432" height="601" loading="lazy"><div class="tutor-body"><h3>Emily</h3><p>English tutor and global mentor. Passion projects in AI/UX and bioethics.</p></div></article>
-    <article class="tutor"><img src="assets/priya.webp" alt="Priya" width="810" height="814" loading="lazy"><div class="tutor-body"><h3>Priya</h3><p>Social studies tutor. Leads social studies passion projects.</p></div></article>
-    <article class="tutor"><img src="assets/elo.webp" alt="Elo" width="562" height="631" loading="lazy"><div class="tutor-body"><h3>Elo</h3><p>Humanities and English tutor. Leads the high school publication project.</p></div></article>
-    <article class="tutor"><img src="assets/vince.webp" alt="Vince" width="420" height="555" loading="lazy"><div class="tutor-body"><h3>Vince</h3><p>STEM tutor. Passion projects on intellectual property rights.</p></div></article>
+    <article class="tutor"><img src="assets/emily.webp" alt="Emily" width="863" height="1200" loading="lazy"><div class="tutor-body"><h3>Emily</h3><p>English tutor and global mentor. Passion projects in AI/UX and bioethics.</p></div></article>
+    <article class="tutor"><img src="assets/priya.webp" alt="Priya" width="1194" height="1200" loading="lazy"><div class="tutor-body"><h3>Priya</h3><p>Social studies tutor. Leads social studies passion projects.</p></div></article>
+    <article class="tutor"><img src="assets/elo.webp" alt="Elo" width="1069" height="1200" loading="lazy"><div class="tutor-body"><h3>Elo</h3><p>Humanities and English tutor. Leads the high school publication project.</p></div></article>
+    <article class="tutor"><img src="assets/vince.webp" alt="Vince" width="840" height="1110" loading="lazy"><div class="tutor-body"><h3>Vince</h3><p>STEM tutor. Passion projects on intellectual property rights.</p></div></article>
     <article class="tutor">
       <div class="video tutor-video" data-video="EfrRfchxJ2A">
-        <button class="video-facade" aria-label="Play film: Michael, PhD and Lecturer at UC Berkeley">
-          <img src="https://i.ytimg.com/vi/EfrRfchxJ2A/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+        <button type="button" class="video-facade" aria-label="Play film: Michael, PhD and Lecturer at UC Berkeley">
+          <img src="https://i.ytimg.com/vi/EfrRfchxJ2A/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy">
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
         </button>
       </div>
@@ -271,71 +459,77 @@
 </section>
 
 <!-- HOW IT WORKS: night sky, the voyage -->
-<section class="section how-sec" id="how" aria-labelledby="how-h">
-  <video class="how-film" data-film muted loop playsinline preload="none" poster="assets/video/night-sky-poster.webp" src="assets/video/night-sky.mp4" aria-hidden="true"></video>
-  <div class="night-sky" aria-hidden="true"></div>
-  <div class="wrap how-grid">
-    <div class="how-head">
-      <p class="chapter"><span>— 06</span> How it works</p>
-      <h2 id="how-h">Chart the course: four steps from first call to steady progress.</h2>
-      <p>A program manager oversees scheduling and session quality. A regional partner keeps parents updated throughout.</p>
-      <a class="btn btn-light" href="#consult">Book step 1, it's free</a>
-    </div>
-    <div class="voyage" data-voyage>
-      <svg class="course" data-course aria-hidden="true">
-        <path class="course-wake" data-wake/>
-        <path class="course-line" data-line/>
-      </svg>
-      <svg class="voyage-boat" data-vboat aria-hidden="true" viewBox="0 0 120 120"><use href="#boat-light"/></svg>
-      <ol class="steps">
-        <li class="step" data-step>
-          <svg class="waypoint" aria-hidden="true"><use href="#star"/></svg>
-          <span class="step-num">01</span>
-          <h3>Free consultation <span class="pill">30 min</span></h3>
-          <p>Student and parents meet a Program Director to talk through current challenges, target UK or US direction, timeline and what success looks like.</p>
-        </li>
-        <li class="step" data-step>
-          <svg class="waypoint" aria-hidden="true"><use href="#star"/></svg>
-          <span class="step-num">02</span>
-          <h3>Pathway assessment</h3>
-          <p>We map the full picture: curriculum (IB, A-Level, IGCSE, AP, SAT/ACT), subject-by-subject performance, target pathways and learning gaps.</p>
-        </li>
-        <li class="step" data-step>
-          <svg class="waypoint" aria-hidden="true"><use href="#star"/></svg>
-          <span class="step-num">03</span>
-          <h3>Your Polaris plan</h3>
-          <p>A personalised tutoring plan with matched tutors, a session schedule and progress tracking, overseen by your program manager.</p>
-        </li>
-        <li class="step" data-step>
-          <svg class="waypoint" aria-hidden="true"><use href="#star"/></svg>
-          <span class="step-num">04</span>
-          <h3>Global mentor session</h3>
-          <p>For every 11 sessions, a 45-minute session with a programme director on university preparation, study direction and long-term goals.</p>
-        </li>
-        <li class="harbour" data-step>
-          <svg class="harbour-light" viewBox="0 0 80 120" aria-hidden="true"><path d="M30 40h20l5 80H25Z" fill="#E6F2FC"/><path d="M27 64 53 56v10L27 74Zm-1 26 30-8v10l-30 8Z" fill="#455EA3"/><rect x="26" y="34" width="28" height="7" rx="2" fill="#E6F2FC"/><rect x="31" y="18" width="18" height="16" rx="2" fill="#212B47" stroke="#E6F2FC" stroke-width="2.5"/><circle class="harbour-lamp" cx="40" cy="26" r="4.5" fill="#F5B841"/><path d="M30 18 40 8l10 10Z" fill="#E6F2FC"/></svg>
-          <p><strong>University.</strong> A clear, steady route there.</p>
-        </li>
-      </ol>
+<section class="section screen how-sec" id="how" aria-labelledby="how-h">
+  <div class="how-stage">
+    <video class="how-film" data-film muted loop playsinline preload="none" poster="assets/video/night-sky-poster.webp" src="assets/video/night-sky.mp4" aria-hidden="true"></video>
+    <div class="wrap how-grid">
+      <div class="how-head">
+        <p class="chapter"><span>— 07</span> How it works</p>
+        <h2 id="how-h">Four steps from first call to steady progress.</h2>
+        <p>A program manager oversees scheduling and session quality. A regional partner keeps parents updated throughout.</p>
+        <a class="btn btn-primary" href="#consult">Book step 1, it's free</a>
+      </div>
+      <div class="voyage" data-voyage>
+        <svg class="course" data-course aria-hidden="true">
+          <path class="course-wake" data-wake/>
+          <path class="course-line" data-line/>
+        </svg>
+        <svg class="voyage-boat" data-vboat aria-hidden="true" viewBox="0 0 120 120"><use href="#boat-light"/></svg>
+        <ol class="steps">
+          <li class="step" data-step>
+            <svg class="waypoint" aria-hidden="true"><use href="#star"/></svg>
+            <span class="step-num">01</span>
+            <h3>Free consultation <span class="pill">30 min</span></h3>
+            <p>Student and parents meet a Program Director to talk through current challenges, target UK or US direction, timeline and what success looks like.</p>
+          </li>
+          <li class="step" data-step>
+            <svg class="waypoint" aria-hidden="true"><use href="#star"/></svg>
+            <span class="step-num">02</span>
+            <h3>Pathway assessment</h3>
+            <p>We map the full picture: curriculum (IB, A-Level, IGCSE, AP, SAT/ACT), subject-by-subject performance, target pathways and learning gaps.</p>
+          </li>
+          <li class="step" data-step>
+            <svg class="waypoint" aria-hidden="true"><use href="#star"/></svg>
+            <span class="step-num">03</span>
+            <h3>Your Polaris plan</h3>
+            <p>A personalised tutoring plan with matched tutors, a session schedule and progress tracking, overseen by your program manager.</p>
+          </li>
+          <li class="step" data-step>
+            <svg class="waypoint" aria-hidden="true"><use href="#star"/></svg>
+            <span class="step-num">04</span>
+            <h3>Global mentor session</h3>
+            <p>For every 11 sessions, a 45-minute session with a programme director on university preparation, study direction and long-term goals.</p>
+          </li>
+          <li class="harbour" data-step>
+            <svg class="harbour-light" viewBox="0 0 80 120" aria-hidden="true"><path d="M30 40h20l5 80H25Z" fill="#FFF1E6"/><path d="M27 64 53 56v10L27 74Zm-1 26 30-8v10l-30 8Z" fill="#5B2A86"/><rect x="26" y="34" width="28" height="7" rx="2" fill="#FFF1E6"/><rect x="31" y="18" width="18" height="16" rx="2" fill="#261131" stroke="#FFF1E6" stroke-width="2.5"/><circle class="harbour-lamp" cx="40" cy="26" r="4.5" fill="#FFAE00"/><path d="M30 18 40 8l10 10Z" fill="#FFF1E6"/></svg>
+            <p><strong>University.</strong> A clear, steady route there.</p>
+          </li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TRADEWIND: the company behind Polaris -->
-<section class="section tw-sec" id="tradewind" aria-labelledby="tw-h">
+<section class="section tw-sec bg-band" id="tradewind" aria-labelledby="tw-h">
   <div class="wrap">
     <div class="tw-pin" data-tw-pin>
       <div class="tw-sticky">
-        <svg class="tw-compass" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#212B47" stroke-width=".6"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="80" stroke-dasharray="1 3"/><circle cx="100" cy="100" r="30"/><path d="M100 2v196M2 100h196M31 31l138 138M169 31 31 169"/></g><path class="tw-needle" d="M100 10 110 90 190 100 110 110 100 190 90 110 10 100 90 90Z" fill="#212B47" fill-opacity=".14" stroke="#212B47" stroke-width=".6"/></svg>
         <div class="tw-head">
-          <p class="chapter"><span>— 07</span> Who runs Polaris</p>
+          <p class="chapter"><span>— 08</span> Who runs Polaris</p>
           <h2 id="tw-h">Polaris is a programme of Tradewind Technologies.</h2>
           <p class="body-lg">Founded in 2025 at Block71, NUS Enterprise, Singapore, Tradewind uses its education and advisory work to fund early-stage tech ventures built by university students across Southeast Asia. <em>Your first tailwind.</em></p>
         </div>
         <div class="tw-voyage">
           <div class="tw-track" aria-hidden="true">
             <span class="tw-trail" data-tw-trail></span>
-            <svg class="tw-sail" data-tw-sail viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#212B47"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#455EA3"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#212B47"/></svg>
+            <svg class="tw-sail" data-tw-sail viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#261131"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#5B2A86"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#261131"/></svg>
+            <span class="tw-dest"><svg class="tw-polaris" viewBox="0 0 24 24"><use href="#star"/></svg><svg class="tw-compass" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="30" class="c-face"/><circle cx="32" cy="32" r="23.5" class="c-ring"/>
+              <path class="c-ticks" d="M32 6v4M32 54v4M6 32h4M54 32h4"/>
+              <g class="tw-needle"><path class="c-south" d="M32 13 36.2 32 32 51 27.8 32Z"/><path class="c-north" d="M32 13 36.2 32H27.8Z"/></g>
+              <circle cx="32" cy="32" r="2.4" class="c-pin"/>
+            </svg></span>
           </div>
           <ol class="tw-model" data-model>
             <li class="tw-step is-polaris" data-tw-stage>
@@ -360,7 +554,7 @@
       </div>
     </div>
 
-    <p class="chapter tw-sub"><span>— 08</span> Other Tradewind programmes</p>
+    <p class="chapter tw-sub"><span>— 09</span> Other Tradewind programmes</p>
     <p class="tw-note">Tradewind runs a few programmes alongside Polaris, each with its own team and focus.</p>
     <div class="tw-folders">
       <a class="folder" href="https://www.tradewind-tech.com/odyssey-home" target="_blank" rel="noopener">
@@ -391,11 +585,11 @@
   </div>
 </section>
 
-<!-- RESULTS: rendered from RESULTS in main.js, hidden until real data is added -->
-<section class="section results-sec" id="results" aria-labelledby="res-h" hidden data-results>
-  <p class="sample-banner" hidden data-sample-banner>Sample layout · add real Polaris results to RESULTS in main.js · shown only on localhost until then</p>
+<!-- RESULTS: rendered from src/pages/home/model/results.js, hidden until real data is added -->
+<section class="section screen results-sec bg-base" id="results" aria-labelledby="res-h" hidden data-results>
+  <p class="sample-banner" hidden data-sample-banner>Sample layout · add real Polaris results in src/pages/home/model/results.js · shown only on localhost until then</p>
   <div class="wrap">
-    <p class="chapter"><span>— 09</span> Results</p>
+    <p class="chapter"><span>— 10</span> Results</p>
     <h2 id="res-h" class="section-h">Where Polaris students go next.</h2>
   </div>
   <div class="res-marquee" data-res-marquee hidden><ul class="res-track" data-res-track aria-hidden="true"></ul></div>
@@ -403,15 +597,15 @@
 </section>
 
 <!-- PROOF (placeholders until real content is collected) -->
-<section class="section proof-sec" aria-labelledby="proof-h">
+<section class="section screen proof-sec bg-base" aria-labelledby="proof-h">
   <div class="wrap">
-    <p class="chapter"><span>— 10</span> Families</p>
+    <p class="chapter"><span>— 11</span> Families</p>
     <h2 id="proof-h" class="section-h">What families say.</h2>
     <div class="proof-grid">
       <figure class="quote quote-film">
         <div class="video" data-video="znNMSONbLl0">
-          <button class="video-facade" aria-label="Play film: Chang Hoon, a parent from Odyssey, a separate Tradewind programme">
-            <img src="https://i.ytimg.com/vi/znNMSONbLl0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+          <button type="button" class="video-facade" aria-label="Play film: Chang Hoon, a parent from Odyssey, a separate Tradewind programme">
+            <img src="https://i.ytimg.com/vi/znNMSONbLl0/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy">
             <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
           </button>
         </div>
@@ -428,11 +622,11 @@
 <!-- CONSULT BAND: terrace film -->
 <section class="interlude consult-band" data-expand aria-label="Free consultation">
   <div class="interlude-frame">
-    <video data-film muted loop playsinline preload="none" poster="assets/video/terrace-poster.webp" src="assets/video/terrace.mp4" aria-hidden="true"></video>
+    <video data-film muted loop playsinline preload="none" poster="assets/video/campus-band-poster.webp" src="assets/video/campus-band.mp4" aria-hidden="true"></video>
     <div class="interlude-shade" aria-hidden="true"></div>
     <div class="band-copy">
       <p class="band-kicker">Thirty minutes, with a director, at no cost.</p>
-      <a class="btn btn-light btn-lg" href="#consult">Book your consultation<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="btn btn-primary btn-lg" href="#consult">Book your consultation<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -440,13 +634,18 @@
 <section class="section consult-sec" id="consult" aria-labelledby="consult-h">
   <div class="wrap consult-grid">
     <div class="consult-copy">
-      <p class="chapter"><span>— 11</span> Free consultation</p>
+      <p class="chapter"><span>— 12</span> Free consultation</p>
       <h2 id="consult-h">Book a free 30-minute consultation with a Program Director.</h2>
+      <ol class="journey" aria-label="What happens next">
+        <li><b>1</b><span><strong>We reply within an hour</strong>on business days, on the app you choose</span></li>
+        <li><b>2</b><span><strong>You pick a time</strong>that suits your family</span></li>
+        <li><b>3</b><span><strong>30 minutes with a director</strong>grades, targets and timeline. No payment</span></li>
+      </ol>
       <div class="directors">
         <div class="faces faces-lg">
-          <img src="assets/ian.webp" alt="" width="52" height="52">
-          <img src="assets/maxime.webp" alt="" width="52" height="52">
-          <img src="assets/lotus.webp" alt="" width="52" height="52">
+          <img src="assets/faces/ian.webp" alt="" width="52" height="52">
+          <img src="assets/faces/maxime.webp" alt="" width="52" height="52">
+          <img src="assets/faces/lotus.webp" alt="" width="52" height="52">
         </div>
         <p>You'll speak with a director, not a salesperson.</p>
       </div>
@@ -521,21 +720,17 @@
       </div>
       <div class="field">
         <label for="f-msg">Anything we should know? <span class="opt">Optional</span></label>
-        <textarea id="f-msg" name="message" rows="3"></textarea>
+        <textarea id="f-msg" name="message" rows="1" placeholder="Subjects, deadlines, questions"></textarea>
       </div>
       <button class="btn btn-primary btn-block btn-lg" type="submit" data-submit>
         <span class="btn-label">Request my free consultation</span>
         <span class="spinner" aria-hidden="true"></span>
       </button>
-      <ol class="next">
-        <li><span>1</span>We reply within an hour on business days</li>
-        <li><span>2</span>You pick a time that suits your family</li>
-        <li><span>3</span>30 minutes with a director. No payment needed</li>
-      </ol>
+      <a class="btn btn-dark btn-block booking-link" href="#" target="_blank" rel="noopener" data-booking hidden>Or pick a time on our calendar<svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
       <p class="form-foot">Prefer to chat now?
         <a href="https://wa.me/" data-wa target="_blank" rel="noopener">WhatsApp</a> ·
         <a href="https://line.me/ti/g/WuUfhpwdzJ" target="_blank" rel="noopener">LINE</a> ·
-        <a href="http://pf.kakao.com/_fJNsn" target="_blank" rel="noopener">KakaoTalk</a>
+        <a href="https://pf.kakao.com/_fJNsn" target="_blank" rel="noopener">KakaoTalk</a>
       </p>
       <div class="form-done" hidden tabindex="-1" role="status">
         <svg class="i" aria-hidden="true"><use href="#check"/></svg>
@@ -546,9 +741,9 @@
 </section>
 
 <!-- FAQ -->
-<section class="section faq-sec" id="faq" aria-labelledby="faq-h">
+<section class="section screen faq-sec bg-base latitude" id="faq" aria-labelledby="faq-h">
   <div class="wrap faq-wrap">
-    <p class="chapter"><span>— 12</span> Questions</p>
+    <p class="chapter"><span>— 13</span> Questions</p>
     <h2 id="faq-h">Questions parents ask.</h2>
     <div class="faq">
       <details><summary>What does the $880 SGD package include?</summary><div class="faq-a"><p>Eleven 1:1 tutorials of 50 minutes, one free 45-minute session with a programme director, a dedicated student manager and progress reports.</p></div></details>
@@ -573,7 +768,7 @@
 
 <footer class="footer">
   <div class="horizon" aria-hidden="true">
-    <svg class="horizon-sail" viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#E6F2FC"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#95A4CD"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#E6F2FC"/></svg>
+    <svg class="horizon-sail" viewBox="0 0 120 120"><path d="M56 6C55 38 49 68 30 98h28Z" fill="#FFF1E6"/><path d="M62 24c18 20 28 46 26 74H62Z" fill="#C9A7C4"/><path d="M16 100h88c-6 9-16 13-30 13H42c-14 0-22-4-26-13Z" fill="#FFF1E6"/></svg>
   </div>
   <div class="wrap footer-grid">
     <div>
@@ -583,7 +778,7 @@
         <span class="brand-text"><strong>POLARIS</strong><small>a Tradewind Technologies programme</small></span>
       </a>
       <p class="footer-addr">Polaris is a programme of Tradewind Technologies Pte. Ltd.<br>Block71, NUS Enterprise · 71 Ayer Rajah Crescent, #02-01<br>Singapore 139951 · <a href="mailto:team@tradewind-tech.com">team@tradewind-tech.com</a></p>
-      <p class="footer-coords">1°17′48.8″N 103°47′13.6″E <svg aria-hidden="true"><use href="#star"/></svg> Your first tailwind.</p>
+      <p class="footer-coords">1°17′48.8″N 103°47′13.6″E <span class="footer-star" data-admin-door><svg aria-hidden="true"><use href="#star"/></svg></span> Your first tailwind.</p>
     </div>
     <nav aria-label="Footer">
       <p class="footer-h">Polaris</p>
@@ -591,14 +786,15 @@
     </nav>
     <nav aria-label="Contact">
       <p class="footer-h">Contact</p>
-      <a href="https://wa.me/" data-wa>WhatsApp</a><a href="https://line.me/ti/g/WuUfhpwdzJ">LINE</a><a href="http://pf.kakao.com/_fJNsn">KakaoTalk</a>
+      <a href="https://wa.me/" data-wa>WhatsApp</a><a href="https://line.me/ti/g/WuUfhpwdzJ">LINE</a><a href="https://pf.kakao.com/_fJNsn">KakaoTalk</a>
     </nav>
     <nav aria-label="Company">
       <p class="footer-h">Tradewind</p>
       <a href="https://www.tradewind-tech.com/">Tradewind home</a><a href="https://www.tradewind-tech.com/team">Team</a><a href="https://www.tradewind-tech.com/privacy">Privacy</a><a href="https://www.tradewind-tech.com/data-deletion">Data deletion</a>
     </nav>
   </div>
-  <div class="wrap footer-bottom"><p>© 2026 Tradewind Technologies</p></div>
+  <div class="wrap footer-bottom"><p>© 2026 Tradewind Technologies</p><p class="credits">Campus footage from <a href="https://www.pexels.com/license/">Pexels</a>. Sather Tower photo: <a href="https://commons.wikimedia.org/wiki/File:Redwood_trees_and_Sather_Tower_during_the_Sunset_in_Berkeley_California.jpg">Wil540 art</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons; cropped and upscaled.</p></div>
+  <p class="footer-wordmark" aria-hidden="true"><span>POLARIS</span></p>
 </footer>
 
 <!-- Desktop chat launcher -->
@@ -606,9 +802,9 @@
   <div class="chat-pop" id="chat-pop">
     <a class="chat-btn wa" href="https://wa.me/" data-wa target="_blank" rel="noopener">WhatsApp</a>
     <a class="chat-btn line" href="https://line.me/ti/g/WuUfhpwdzJ" target="_blank" rel="noopener">LINE</a>
-    <a class="chat-btn kakao" href="http://pf.kakao.com/_fJNsn" target="_blank" rel="noopener">KakaoTalk</a>
+    <a class="chat-btn kakao" href="https://pf.kakao.com/_fJNsn" target="_blank" rel="noopener">KakaoTalk</a>
   </div>
-  <button class="chat-fab" aria-expanded="false" aria-controls="chat-pop" data-chat-btn>
+  <button type="button" class="chat-fab" aria-expanded="false" aria-controls="chat-pop" data-chat-btn>
     <svg class="i i-chat" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
     <svg class="i i-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <span class="chat-label">Chat with us</span>
@@ -661,16 +857,16 @@
   </div>
 </template>
 <template id="dir-francis">
-  <div class="sheet-img"><img src="assets/francis.webp" alt="Dr. Francis Kim"></div>
+  <div class="sheet-img"><img src="assets/francis.webp" alt="Professor Francis Kim"></div>
   <div class="sheet-body">
-    <h3 class="sheet-name" id="sheet-title">Dr. Francis Kim</h3>
-    <p class="role">Founder</p>
-    <p class="sheet-leads">Founder of Tradewind Technologies and Polaris.</p>
-    <ul class="sheet-bio"><li>DPhil, University of Oxford (Merton College)</li><li>MPA, Harvard University (Samsung Scholar)</li><li>MCIT (Computer Science), University of Pennsylvania</li><li>BA, UC Berkeley; Visiting Scholar and Law Associate, Harvard</li><li>Former Strategist, Goldman Sachs Asia-Pacific</li><li>Former Navy Officer, ROK Navy HQ Intelligence Unit</li></ul>
-    
-    <div class="sheet-actions"><a class="btn btn-primary" data-wa-ask="Dr. Francis Kim (Founder)" href="https://wa.me/" target="_blank" rel="noopener">Ask Francis a question</a><a class="link-arrow" href="https://www.linkedin.com/in/francisjeen/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+    <h3 class="sheet-name" id="sheet-title">Prof. Francis (Jeen) Kim</h3>
+    <p class="role">Founder, Tradewind Technologies and Polaris</p>
+    <p class="sheet-leads">Assistant Professor at Chulalongkorn University and Adjunct Professor at Yonsei University, working on how innovation is governed, seen from social science, investors and policy design.</p>
+    <ul class="sheet-bio"><li>DPhil, University of Oxford (Merton College)</li><li>MPA, Harvard Kennedy School, as a Samsung Lee Kun Hee Scholar</li><li>Visiting Scholar, Harvard Law School</li><li>Former Investment Strategist, Goldman Sachs Asia-Pacific</li><li>Has taught thousands of students across Asia, from undergraduates to executive MBAs</li><li>Mentor to Korean family business groups on leadership succession; private investor</li><li>Postgraduate student, Penn Engineering</li><li>BA, UC Berkeley; former Navy officer and athlete</li></ul>
+    <p class="sheet-proof">In 2025 he founded Tradewind at BLOCK71 Singapore, so its education work can back tech projects across Southeast Asia.</p>
+    <div class="sheet-actions"><a class="btn btn-primary" data-wa-ask="Prof. Francis Kim (Founder)" href="https://wa.me/" target="_blank" rel="noopener">Ask Francis a question</a><a class="link-arrow" href="https://www.merton.ox.ac.uk/people/francis-kim-2008" target="_blank" rel="noopener">Profile at Merton College, Oxford ↗</a><a class="link-arrow" href="https://www.linkedin.com/in/francisjeen/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
   </div>
 </template>
-<script src="main.js"></script>
+<script type="module" src="src/app/main.js"></script>
 </body>
 </html>

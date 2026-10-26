@@ -1,0 +1,44 @@
+/* 09 Results: rendered by results.js from model/results.js. Hidden until real data exists (a sample shows on localhost). */
+.results-sec { position: relative; overflow: clip; }
+.results-sec:has(.sample-banner:not([hidden])) { padding-top: calc(var(--sp) + 40px); }
+.sample-banner { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); padding: 6px 14px; border-radius: 999px; background: #FFF4D6; color: var(--amber-ink); font-size: 13px; font-weight: 600; white-space: nowrap; }
+
+/* university offers, as a slow marquee */
+.res-marquee { margin-top: -8px; overflow: hidden; border-block: 1px solid var(--line); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.res-track { display: flex; width: max-content; padding: 22px 0; animation: res-slide var(--dur, 32s) linear infinite; }
+.res-track li { display: inline-flex; align-items: baseline; gap: 12px; padding: 0 36px; border-right: 1px solid var(--line); font-size: 1.15rem; color: var(--ink-2); white-space: nowrap; }
+.res-track strong { color: var(--ink); }
+.res-count { font: 800 2.6rem/1 var(--font-display); color: var(--violet-600); letter-spacing: -0.03em; }
+@keyframes res-slide { to { transform: translateX(-50%); } }
+
+/* stats and acceptance-rate bars */
+.res-grid { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 20px; }
+.res-stat, .res-rates { padding: 28px; border-radius: var(--r-lg); background: var(--ivory); box-shadow: inset 0 0 0 1px var(--line); }
+.res-stat { display: grid; align-content: space-between; gap: 24px; }
+.res-stat p:last-child { color: var(--ink-2); }
+.res-big { font: 800 clamp(3.4rem, 6vw, 5rem)/1 var(--font-display); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.res-rates h3 { font-size: 1.3rem; }
+.res-legend { margin: 10px 0 18px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); }
+.res-legend i { width: 14px; height: 8px; border-radius: 4px; display: inline-block; margin-left: 8px; }
+.res-legend i:first-child { margin-left: 0; }
+.res-row { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; padding: 8px 0; }
+.res-row > span { font-weight: 600; }
+.res-bars { display: grid; gap: 4px; }
+.res-bar { display: grid; grid-template-columns: 1fr 52px; align-items: center; gap: 8px; }
+.res-bar i { display: block; height: 10px; border-radius: 6px; transform-origin: 0 50%; transform: scaleX(0); transition: transform 1100ms var(--ease-out); }
+.res-bar b { font-size: 13px; font-variant-numeric: tabular-nums; }
+.res-avg { background: var(--mauve-300); }
+.res-pol { background: linear-gradient(90deg, var(--plum-800), var(--violet-600)); }
+
+@media (max-width: 900px) {
+  .res-grid { grid-template-columns: 1fr 1fr; }
+  .res-rates { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .res-grid { grid-template-columns: 1fr; }
+  .sample-banner { white-space: normal; width: 90%; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .res-track { animation: none; }
+  .res-bar i { transition: none; }
+}

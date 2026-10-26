@@ -1,0 +1,46 @@
+/* 05 Tutors: heading row with arrows, then a horizontal snap carousel (tutors.js drives the arrows). */
+.section-h-row { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: clamp(32px, 4vw, 48px); }
+.section-h-row h2 { max-width: 20ch; }
+.section-h-row .body-lg { margin-top: 12px; }
+
+.carousel-ctrl { display: flex; gap: 8px; flex: none; }
+.icon-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--plum-900); display: grid; place-items: center; cursor: pointer; transition: transform 160ms var(--ease-ui), background-color 150ms ease, opacity 150ms ease; }
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn:disabled { opacity: .35; cursor: default; }
+@media (hover: hover) and (pointer: fine) { .icon-btn:not(:disabled):hover { background: var(--peach-50); } }
+
+.tutor-track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 280px; gap: 20px;
+  overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+  padding: 4px max(var(--gutter), calc((100% - 1200px) / 2)) 24px; scroll-padding-inline: max(var(--gutter), calc((100% - 1200px) / 2));
+  scrollbar-width: none;
+}
+.tutor-track::-webkit-scrollbar { display: none; }
+.tutor { scroll-snap-align: start; background: #fff; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-tile); }
+.tutor img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; filter: grayscale(1); background: radial-gradient(120% 85% at 50% 18%, #FFFCF8 0%, #F6E6DE 55%, #EBD6D6 100%); }
+.tutor-body { padding: 20px 22px 24px; }
+.tutor-body p { margin-top: 6px; font-size: 15px; color: var(--ink-2); }
+.tutor-more { background: var(--plum-900); color: #fff; display: flex; align-items: end; }
+.tutor-more p { color: var(--ink-night); }
+.tutor-more .link-arrow { margin-top: 16px; }
+.more-num { font: 800 3.6rem/1 var(--font-display); color: var(--mauve-300); display: block; margin-bottom: 12px; letter-spacing: -0.03em; }
+
+/* a tutor's film card: the 16:9 poster is cropped to the card's 4:5 */
+.tutor-video { aspect-ratio: 4 / 5; border-radius: 0; box-shadow: none; }
+.tutor-video .video-facade { overflow: hidden; }
+.tutor-video .video-facade img { object-position: 50% 30%; filter: grayscale(1); }
+.tutor-video .play { width: 56px; height: 56px; margin: -28px 0 0 -28px; }
+
+@media (max-width: 600px) {
+  .section-h-row { align-items: start; flex-direction: column; }
+  .tutor-track { grid-auto-columns: 78%; }
+}
+
+/* fitted to one screen: the portraits (and the film card) take the height left after the heading and the card text */
+@media (min-width: 1081px) and (min-height: 720px) {
+  .tutor img, .tutor-video { aspect-ratio: auto; height: clamp(170px, calc(var(--fit) - 392px), 350px); }
+}
+/* landscape phones: portraits short enough to see a whole card */
+@media (orientation: landscape) and (max-height: 500px) {
+  .tutor img, .tutor-video { aspect-ratio: auto; height: 58vh; }
+}

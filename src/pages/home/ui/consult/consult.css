@@ -1,0 +1,89 @@
+/* 11 Free consultation: the terrace film band, then the director promise, the sample Pathway Map and the form (form.css). */
+
+/* lead-in band: an interlude variant with centred copy */
+.consult-band .interlude-frame { height: clamp(360px, 56vh, 560px); align-items: center; justify-content: center; text-align: center; }
+.consult-band .interlude-shade { background: rgba(26,11,34,.45); }
+.band-copy { display: grid; justify-items: center; gap: 28px; color: #fff; padding: 0 24px; }
+.band-kicker { font: 500 clamp(1.8rem, 3.6vw, 3rem)/1.15 var(--font-display); letter-spacing: -0.02em; max-width: 18ch; text-wrap: balance; }
+
+.consult-sec { padding-top: calc(var(--sp) * .85); background:
+  radial-gradient(60% 50% at 80% 10%, rgba(255,255,255,.6), transparent 70%),
+  linear-gradient(180deg, var(--base) 0%, var(--base-2) 100%); }
+.consult-grid { display: grid; grid-template-columns: 6fr 6fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.consult-copy h2 { max-width: 17ch; font-size: clamp(2rem, 3.2vw, 2.75rem); }
+
+/* what happens after you send the form: three stops on one dotted line */
+.journey { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+.journey::before { content: ""; position: absolute; left: 14px; right: 14px; top: 13px; height: 1px; background: repeating-linear-gradient(90deg, rgba(38,17,49,.28) 0 3px, transparent 3px 7px); }
+.journey li { position: relative; display: grid; gap: 8px; align-content: start; }
+.journey b { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--amber); color: var(--amber-ink); font-size: 13px; font-weight: 700; box-shadow: 0 0 0 4px var(--base); }
+.journey span { display: grid; font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+.journey strong { color: var(--ink); font-weight: 600; font-size: 15px; }
+
+.directors { display: flex; align-items: center; gap: 16px; margin-top: 22px; font-weight: 600; }
+
+/* sample Pathway Map: bars draw in once (pathway-map.js adds .is-in) */
+.map { margin: 22px 0 0; padding: 20px 22px; border-radius: var(--r-lg); background: #fff; box-shadow: var(--shadow-card); max-width: 520px; }
+.map-head { display: flex; align-items: center; justify-content: space-between; }
+.map-title { display: inline-flex; align-items: center; gap: 8px; font: 700 1.05rem/1 var(--font-display); }
+.map-title svg { width: 16px; height: 16px; fill: var(--amber); }
+.map-tag { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); padding: 4px 10px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); }
+.map-intro { margin-top: 6px; font-size: 14px; color: var(--ink-2); }
+.map-rows { margin-top: 12px; border-top: 1px solid var(--line); }
+.map-row { display: grid; grid-template-columns: 96px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; align-items: start; }
+.map-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.map-row > span { color: var(--ink-2); }
+.map-row strong { font-weight: 600; }
+.bars { display: grid; gap: 8px; }
+.bar { display: grid; grid-template-columns: 100px 1fr 48px; align-items: center; gap: 10px; }
+.bar em { font-style: normal; font-weight: 600; font-size: 14px; }
+.bar b { font-size: 13px; font-variant-numeric: tabular-nums; color: var(--violet-600); text-align: right; }
+.bar i { position: relative; height: 8px; border-radius: 99px; background: var(--peach-50); overflow: hidden; }
+.bar i::before, .bar i::after { content: ""; position: absolute; inset: 0 auto 0 0; border-radius: 99px; transform-origin: 0 50%; }
+.bar i::before { width: calc(var(--goal) * 100%); background: repeating-linear-gradient(90deg, rgba(255,174,0,.55) 0 4px, transparent 4px 7px); }
+.bar i::after { width: calc(var(--now) * 100%); background: var(--violet-600); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .map .bar i::before, .js .map .bar i::after { transform: scaleX(0); transition: transform 1100ms var(--ease-out); }
+  .js .map .bar i::after { transition-delay: 150ms; }
+  .js .map.is-in .bar i::before, .js .map.is-in .bar i::after { transform: scaleX(1); }
+  .js .map.is-in .bar:nth-child(2) i::before, .js .map.is-in .bar:nth-child(2) i::after { transition-delay: 120ms, 270ms; }
+  .js .map.is-in .bar:nth-child(3) i::before, .js .map.is-in .bar:nth-child(3) i::after { transition-delay: 240ms, 390ms; }
+}
+
+/* laptops and up: the whole section fits one screen, so a "Book" button lands with the form and its button in view */
+@media (min-width: 861px) {
+  .consult-sec { min-height: calc(100svh - var(--header-h)); display: flex; align-items: center; padding-block: clamp(24px, 4.5vh, 64px); }
+  #consult { scroll-margin-top: -20px; } /* cancels the page-wide 20px scroll gap, so a Book button lands with the section flush under the header */
+}
+/* shorter laptop screens: the map drops its intro line and the heading steps down */
+@media (min-width: 861px) and (max-height: 880px) {
+  .consult-sec { padding-block: clamp(14px, 2.6vh, 32px); }
+  .consult-copy h2 { font-size: clamp(1.85rem, 2.7vw, 2.3rem); }
+  .map-intro, .map-row:nth-child(n+3) { display: none; } /* the sample keeps curriculum and subjects */
+  .journey { margin-top: 16px; }
+  .directors, .map { margin-top: 16px; }
+  .form { gap: 10px; padding: 20px 24px; }
+  .form .field { gap: 3px; }
+  .form input:not([type=radio]):not([type=checkbox]), .form select, .form textarea { min-height: 42px; padding-block: 8px; }
+  .form .seg span, .form .checks span { min-height: 38px; padding-block: 7px; }
+  .form-foot { padding-top: 8px; }
+}
+@media (min-width: 861px) and (max-height: 740px) {
+  .consult-copy h2 { font-size: clamp(1.7rem, 2.5vw, 2.05rem); }
+  .journey span { font-size: 13.5px; }
+  .directors .faces-lg img { width: 44px; height: 44px; }
+  .form .btn-lg { min-height: 48px; padding-block: 10px; }
+  .consult-sec { padding-block: 10px; }
+}
+@media (max-width: 860px) {
+  .consult-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .journey { grid-template-columns: 1fr; gap: 12px; }
+  .journey::before { left: 13px; right: auto; top: 14px; bottom: 14px; width: 1px; height: auto; background: repeating-linear-gradient(180deg, rgba(38,17,49,.28) 0 3px, transparent 3px 7px); }
+  .journey li { grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+}
+@media (max-width: 600px) {
+  .map { padding: 20px; }
+  .bar { grid-template-columns: 86px 1fr 42px; }
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polaris admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/polaris-mark.png">
+<meta name="theme-color" content="#261131">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
+<link rel="preload" href="../assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/general-sans-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../src/app/styles/admin.css">
+</head>
+<body class="admin">
+<svg width="0" height="0" class="sr-only" aria-hidden="true">
+  <symbol id="star" viewBox="0 0 24 24"><path d="M12 0L14 7.86L21.38 4.52L16.48 10.98L23.7 14.67L15.6 14.87L17.21 22.81L12 16.6L6.79 22.81L8.4 14.87L.3 14.67L7.52 10.98L2.62 4.52L10 7.86Z"/></symbol>
+  <symbol id="i-overview" viewBox="0 0 24 24"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-pipeline" viewBox="0 0 24 24"><path d="M4 5h4v14H4zM10 5h4v9h-4zM16 5h4v5h-4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-content" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 15l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<!-- Access gate. Shown until the access code is accepted. -->
+<main class="gate" data-gate>
+  <form class="gate-card" data-gate-form>
+    <img class="gate-mark" src="../assets/polaris-mark.png" alt="" width="186" height="170">
+    <h1>Polaris admin</h1>
+    <p>Enter your access code.</p>
+    <label class="sr-only" for="code">Access code</label>
+    <input id="code" name="code" type="password" autocomplete="current-password" required>
+    <p class="gate-err" data-gate-err hidden>That code didn't match. Check it and try again.</p>
+    <button class="btn btn-primary btn-block" type="submit">Open admin</button>
+    <a class="gate-back" href="../">Back to the site</a>
+  </form>
+</main>
+
+<!-- The app. Each view renders into [data-view]. -->
+<div class="app" data-app hidden>
+  <aside class="side">
+    <a class="side-brand" href="#overview"><img src="../assets/polaris-mark.png" alt="" width="186" height="170"><span>Polaris<small>Admin</small></span></a>
+    <nav class="side-nav" aria-label="Admin">
+      <a href="#overview" data-nav="overview"><svg aria-hidden="true"><use href="#i-overview"/></svg>Overview</a>
+      <a href="#pipeline" data-nav="pipeline"><svg aria-hidden="true"><use href="#i-pipeline"/></svg>Pipeline</a>
+      <a href="#content" data-nav="content"><svg aria-hidden="true"><use href="#i-content"/></svg>Content</a>
+      <a href="#settings" data-nav="settings"><svg aria-hidden="true"><use href="#i-settings"/></svg>Settings</a>
+    </nav>
+    <div class="side-foot">
+      <p class="sample-note"><b>Sample data</b> Nothing here is real yet. Connect a backend in Settings to see live visits and requests.</p>
+      <a href="../" class="side-link">View site ↗</a>
+      <button type="button" class="side-link" data-signout>Sign out</button>
+    </div>
+  </aside>
+  <main class="view" data-view tabindex="-1"></main>
+</div>
+
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+<script type="module" src="../src/app/admin.js"></script>
+</body>
+</html>

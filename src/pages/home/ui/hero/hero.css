@@ -1,0 +1,85 @@
+/* Hero: an inset campus film with the headline over a plum scrim. Its entrance waits for the opening voyage (intro). */
+.hero { position: relative; isolation: isolate; padding: 8px var(--gutter) 0; }
+/* fills the first screen (560–920px), and grows with its copy instead of cutting it off on short screens */
+.hero-frame {
+  position: relative; isolation: isolate; overflow: hidden; border-radius: var(--r-lg);
+  min-height: clamp(560px, calc(100svh - var(--header-h) - 24px), 920px);
+  background: var(--plum-950); display: flex; align-items: flex-end;
+}
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+/* campus films are bright: a plum scrim from the copy's side and the foot keeps the headline legible */
+.hero-shade { position: absolute; inset: 0; z-index: -1; background:
+  linear-gradient(90deg, rgba(26,11,34,.78) 0%, rgba(26,11,34,.52) 38%, rgba(26,11,34,.08) 72%, rgba(26,11,34,0) 100%),
+  linear-gradient(180deg, rgba(26,11,34,.42) 0%, rgba(26,11,34,0) 22%, rgba(26,11,34,0) 52%, rgba(26,11,34,.7) 100%); }
+
+/* padding-top keeps the copy clear of the meta line when the copy fills the frame */
+.hero-inner { position: relative; z-index: 2; width: min(1200px, 100% - 64px); margin: 0 auto; padding: 72px 0 clamp(88px, 11vh, 120px); color: #fff; }
+.hero h1 { max-width: 15ch; color: var(--ivory); text-shadow: 0 2px 24px rgba(26,11,34,.35); }
+/* the headline rises line by line from behind its own baseline */
+.hero-title .line { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.hero-title .line > span { display: block; }
+.lede { font-size: clamp(1.1rem, 1.45vw, 1.28rem); color: #F6E7EC; max-width: 50ch; margin-top: 24px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.hero .btn-light { box-shadow: 0 8px 24px rgba(26,11,34,.3); }
+.reassure { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 20px; font-size: 15px; color: #EAD7E2; }
+.reassure li { display: inline-flex; align-items: center; gap: 8px; }
+.i-check { width: 18px; height: 18px; color: var(--amber); }
+
+/* top-left meta line and right-edge scroll cue, as on tradewind-tech.com */
+.hero-meta { position: absolute; left: 32px; top: 28px; display: inline-flex; align-items: center; gap: 10px; color: #FFF1E6; font: 600 13px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; opacity: .9; }
+.hero-meta svg { width: 12px; height: 12px; fill: var(--amber); }
+.hero-scroll { position: absolute; right: 38px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; display: flex; align-items: center; gap: 12px; color: #FFF1E6; font: 600 12px/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; opacity: .8; }
+.hero-scroll span { width: 1px; height: 56px; background: linear-gradient(#FFF1E6, transparent); }
+
+.film-toggle {
+  position: absolute; right: 24px; bottom: calc(var(--log-lift) + 20px); width: 44px; height: 44px; border-radius: 50%; /* clear of the log card */
+  border: 1px solid rgba(255,255,255,.5); background: rgba(26,11,34,.3); color: #fff; cursor: pointer;
+  display: grid; place-items: center; backdrop-filter: blur(6px); transition: background-color 200ms ease, transform 160ms var(--ease-ui);
+}
+.film-toggle:active { transform: scale(.94); }
+.film-toggle svg { width: 14px; height: 14px; fill: currentColor; }
+@media (hover: hover) and (pointer: fine) { .film-toggle:hover { background: rgba(26,11,34,.55); } }
+@media (prefers-reduced-transparency: reduce) { .film-toggle { backdrop-filter: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero-video { animation: settle 2400ms var(--ease-out) both; }
+  .hero-scroll span { animation: cue 2.4s var(--ease-out) infinite; transform-origin: top; }
+  .js .hero-title .line > span { animation: line-up 1100ms var(--ease-out) both; animation-delay: 150ms; }
+  .js .hero-title .line + .line > span { animation-delay: 270ms; }
+  /* then the rest arrives in one short cascade */
+  .js .hero-in { animation: arrive 900ms var(--ease-out) both; animation-delay: 420ms; }
+  .js .hero-in:nth-child(3) { animation-delay: 500ms; }
+  .js .hero-in:nth-child(4) { animation-delay: 580ms; }
+  /* as you scroll on, the film settles back into the page (hero.js sets --away 0→1) */
+  .hero-frame { transform: scale(calc(1 - var(--away, 0) * .045)); transform-origin: 50% 0; }
+  .hero-inner { translate: 0 calc(var(--away, 0) * -56px); opacity: calc(1 - var(--away, 0) * 1.1); }
+  .hero-video { translate: 0 calc(var(--away, 0) * 6%); }
+}
+
+@media (max-width: 860px) {
+  .hero-frame { min-height: 640px; }
+  .hero-inner { width: calc(100% - 40px); }
+  .hero-scroll { display: none; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 6px 8px 0; }
+  .hero-frame { min-height: 600px; border-radius: 18px; }
+  .hero-shade { background: linear-gradient(180deg, rgba(26,11,34,.35) 0%, rgba(26,11,34,.6) 45%, rgba(26,11,34,.92) 100%); }
+  .hero-inner { padding-top: 76px; padding-bottom: 40px; }
+  .hero-ctas .btn { width: 100%; }
+  .reassure { flex-direction: column; }
+  .hero-meta { left: 18px; right: 18px; top: 18px; flex-wrap: wrap; row-gap: 6px; }
+  .film-toggle { right: 14px; bottom: 14px; }
+}
+/* landscape phones: no tall empty sky above the headline; the copy sets the height */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero-frame { min-height: 0; }
+  .hero-inner { padding-bottom: 72px; }
+}
+
+@keyframes arrive { from { opacity: 0; transform: translateY(14px); } }
+@keyframes line-up { from { transform: translateY(108%); } }
+/* while the opening voyage plays, the hero's entrance holds on its first frame */
+.intro-on .hero-title .line > span, .intro-on .hero-in, .intro-on .hero-video { animation-play-state: paused; }
+@keyframes settle { from { transform: scale(1.06); opacity: .5; } }
+@keyframes cue { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }

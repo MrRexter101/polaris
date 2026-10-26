@@ -1,0 +1,27 @@
+[
+ {
+  "file": "assets/campus/sather-tower.webp",
+  "media": "image",
+  "ref": "commons:80292190",
+  "title": "Redwood trees and Sather Tower during the Sunset in Berkeley California",
+  "creator": "Wil540 art",
+  "creatorUrl": null,
+  "date": "2019-06-29",
+  "license": "CC BY-SA 4.0",
+  "licenseCode": "by-sa",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "creditRequired": true,
+  "page": "https://commons.wikimedia.org/wiki/File:Redwood_trees_and_Sather_Tower_during_the_Sunset_in_Berkeley_California.jpg",
+  "via": "Wikimedia Commons",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Redwood_trees_and_Sather_Tower_during_the_Sunset_in_Berkeley_California.jpg/1920px-Redwood_trees_and_Sather_Tower_during_the_Sunset_in_Berkeley_California.jpg",
+  "width": 1920,
+  "height": 1354,
+  "bytes": 327497,
+  "credit": "\"Redwood trees and Sather Tower during the Sunset in Berkeley California\" by Wil540 art, CC BY-SA 4.0, via Wikimedia Commons",
+  "notes": [
+   "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+  ],
+  "saved": "2026-10-25T11:23:02.805Z",
+  "changes": "Cropped to 4:3 and upscaled with Real-ESRGAN (2026-10-26). The credit line on the site says so, as CC BY-SA asks."
+ }
+]

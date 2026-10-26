@@ -1,0 +1,70 @@
+/* 06 How it works: night film behind a sticky heading; a sail follows the course through four steps (voyage.js). */
+.how-sec { position: relative; isolation: isolate; overflow: hidden; padding: calc(var(--sp) * 1.1) 0; background: var(--plum-950); color: #fff; }
+.how-sec::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(26,11,34,.92) 0%, rgba(26,11,34,.55) 55%, rgba(26,11,34,.75) 100%); }
+.how-film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: .5; }
+.how-sec .chapter { color: var(--ink-night); }
+.how-sec .chapter span { color: var(--amber); }
+
+.how-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.how-head { position: sticky; top: var(--sticky-top, calc(var(--header-h) + 48px)); } /* fitted in voyage.js */
+.how-head h2 { max-width: 16ch; }
+.how-head > p { color: var(--ink-night); margin: 20px 0 30px; max-width: 42ch; }
+
+/* the course: a dashed wake, an amber line drawn with the scroll, and the sail riding it */
+.voyage { position: relative; --lane: 72px; }
+.course { position: absolute; left: 0; top: 0; width: var(--lane); height: 100%; overflow: visible; }
+.course-wake { fill: none; stroke: rgba(234,215,226,.22); stroke-width: 2; stroke-dasharray: 2 8; stroke-linecap: round; }
+.course-line { fill: none; stroke: var(--amber); stroke-width: 2.5; stroke-linecap: round; }
+.voyage-boat { position: absolute; left: 0; top: 0; width: 46px; height: 46px; offset-rotate: 0deg; offset-anchor: 50% 80%; will-change: offset-distance; filter: drop-shadow(0 6px 12px rgba(0,0,0,.35)); }
+
+.steps { display: grid; gap: 22px; padding-left: var(--lane); }
+.step { position: relative; padding: 28px 30px; border-radius: var(--r-lg); background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 1px var(--line-night); transition: background-color 400ms ease, box-shadow 400ms ease; }
+.step.is-passed { background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,174,0,.4), 0 20px 40px rgba(0,0,0,.2); }
+.waypoint { position: absolute; left: calc(var(--lane) * -1 + var(--lane) / 2 - 11px); top: 32px; width: 22px; height: 22px; fill: rgba(234,215,226,.35); transition: fill 300ms ease, transform 500ms var(--ease-out), filter 300ms ease; }
+.is-passed .waypoint { fill: var(--amber); transform: scale(1.15) rotate(45deg); filter: drop-shadow(0 0 8px rgba(255,174,0,.8)); }
+.step-num { font: 700 13px/1 var(--font-body); color: var(--amber); letter-spacing: .12em; font-variant-numeric: tabular-nums; }
+.step h3 { margin-top: 10px; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.step p { margin-top: 10px; color: var(--ink-night); }
+.pill { font: 600 13px/1 var(--font-body); padding: 6px 10px; border-radius: 999px; background: rgba(255,174,0,.16); color: var(--amber); }
+
+/* the harbour light at the end of the course */
+.harbour { position: relative; display: flex; align-items: center; gap: 16px; padding: 12px 0 0; color: var(--ink-night); }
+.harbour strong { color: #fff; }
+.harbour-light { position: absolute; left: calc(var(--lane) * -1 + var(--lane) / 2 - 20px); bottom: -6px; width: 40px; height: 60px; }
+@media (prefers-reduced-motion: no-preference) {
+  .harbour-lamp { animation: lamp 3.2s ease-in-out infinite; }
+}
+@keyframes lamp { 50% { opacity: .55; } }
+
+@media (max-width: 860px) {
+  .how-grid { grid-template-columns: 1fr; }
+  .how-head { position: static; }
+}
+@media (max-width: 600px) {
+  .voyage { --lane: 48px; }
+  .voyage-boat { width: 38px; height: 38px; }
+  .step { padding: 22px; }
+}
+
+/* fitted to one screen: a wider course column, and each step's number sits beside its title */
+@media (min-width: 1081px) and (min-height: 720px) {
+  .how-grid { grid-template-columns: 4fr 8fr; align-items: center; }
+  .how-head { position: static; }
+  .steps { gap: 10px; }
+  .step { display: grid; grid-template-columns: auto 1fr; align-items: baseline; column-gap: 12px; padding: 16px 24px; }
+  .step h3 { margin-top: 0; font-size: 1.25rem; }
+  .step p { grid-column: 1 / -1; margin-top: 6px; font-size: 15px; }
+  .waypoint { top: 18px; }
+}
+
+/* pinned scene (voyage.js): the stage holds under the header while the scroll sails the course step by step;
+   each step lights as the sail reaches its star, and the harbour light comes on at the end */
+@media (min-width: 1081px) and (min-height: 720px) and (prefers-reduced-motion: no-preference) {
+  .section.screen.how-sec { display: block; align-content: normal; min-height: 0; height: calc(100svh - var(--header-h) + 130vh); padding: 0; overflow: clip; } /* clip, not hidden: hidden would stop the stage sticking */
+  .how-stage { position: sticky; top: var(--header-h); height: calc(100svh - var(--header-h)); display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; padding-block: var(--pad); overflow: hidden; }
+  .step { transition: opacity 600ms ease, transform 700ms var(--ease-out), background-color 400ms ease, box-shadow 400ms ease; }
+  .js .step:not(.is-passed) { opacity: .38; transform: translateX(10px); }
+  .harbour { transition: opacity 600ms ease; }
+  .js .harbour:not(.is-passed) { opacity: .4; }
+  .harbour.is-passed .harbour-light { filter: drop-shadow(0 0 14px rgba(255,174,0,.75)); }
+}

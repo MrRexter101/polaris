@@ -1,0 +1,88 @@
+/* Reset, type, page-wide utilities and the two light section surfaces. */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: calc(var(--header-h) + 20px);
+  scrollbar-color: var(--mauve-300) var(--ivory);
+  scrollbar-width: thin;
+  text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  font: 400 17px/1.6 var(--font-body);
+  color: var(--ink);
+  background: var(--base);
+  overflow-x: clip;
+  caret-color: var(--violet-600);
+}
+@media (max-width: 600px) { body { font-size: 16px; } }
+::selection { background: var(--amber); color: var(--plum-900); }
+img { display: block; max-width: 100%; height: auto; }
+[hidden] { display: none !important; } /* components set display; hidden must still win */
+/* Fraunces for headings (optical sizes tighten it as it grows), General Sans for reading */
+h1, h2, h3 { font-family: var(--font-display); font-optical-sizing: auto; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.012em; }
+h1 { font-size: clamp(2.7rem, 5.8vw, 4.9rem); font-weight: 560; letter-spacing: -0.025em; line-height: 1; }
+h2 { font-size: clamp(2.05rem, 3.7vw, 3.15rem); font-weight: 520; letter-spacing: -0.02em; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+p { margin: 0; text-wrap: pretty; }
+a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 3px solid var(--focus, var(--violet-600)); outline-offset: 3px; border-radius: 6px; }
+/* dark surfaces carry an amber focus ring */
+.impact-sec, .how-sec, .interlude, .campus-scene, .footer, .hero-frame, .tutor-more { --focus: var(--amber); }
+
+/* scrollbar in the palette */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--base); }
+::-webkit-scrollbar-thumb { background: rgba(78,42,102,.35); border-radius: 10px; border: 2px solid var(--base); }
+::-webkit-scrollbar-thumb:hover { background: rgba(78,42,102,.55); }
+
+/* very faint paper grain over the light base, so large areas aren't dead flat */
+body::before { content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: .035; /* no blend mode: a blended layer over playing films makes Chrome flicker */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@media (prefers-contrast: more) { body::before { display: none; } }
+
+/* ---------- Utilities ---------- */
+.wrap { width: min(1200px, 100% - var(--gutter) * 2); margin-inline: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.nowrap { white-space: nowrap; }
+.skip { position: fixed; left: 16px; top: -60px; z-index: 100; background: var(--plum-900); color: #fff; padding: 10px 16px; border-radius: var(--r-sm); transition: transform 200ms var(--ease-ui); }
+.skip:focus { transform: translateY(76px); }
+.i { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.body-lg { font-size: 1.12rem; color: var(--ink-2); margin-top: 20px; max-width: 58ch; }
+
+/* ---------- Sections ---------- */
+.section { padding: var(--sp) 0; }
+.section-h { max-width: 22ch; margin-bottom: clamp(32px, 4vw, 48px); }
+/* Laptops and desktops: a .screen section fills the screen under the header with its content centred, so the
+   scroll or a nav link lands on the whole section at once. --fit is the height its content may use; sections size
+   their pictures from it. The same query is in how-it-works/voyage.js. */
+@media (min-width: 1081px) and (min-height: 720px) {
+  .section.screen {
+    --pad: clamp(28px, 6vh, 88px); --fit: calc(100svh - var(--header-h) - 2 * var(--pad));
+    min-height: calc(100svh - var(--header-h)); padding-block: var(--pad);
+    display: grid; grid-template-columns: minmax(0, 1fr); align-content: center;
+    scroll-margin-top: -20px; /* cancels the page-wide 20px scroll gap, so the section lands flush under the header */
+  }
+  .screen .section-h, .screen .section-h-row, .screen .chooser-head { margin-bottom: clamp(20px, 3.5vh, 40px); }
+}
+
+/* Light surfaces. bg-base: overhead light + a cool pool at the foot. bg-band: the alternate, deeper band. */
+.bg-base { background:
+  radial-gradient(70% 55% at 50% 0%, var(--glow), transparent 70%),
+  radial-gradient(60% 50% at 85% 100%, var(--pool), transparent 70%),
+  var(--base); }
+.bg-band { position: relative; isolation: isolate;
+  background:
+    radial-gradient(70% 55% at 15% 0%, rgba(255,255,255,.55), transparent 70%),
+    radial-gradient(60% 60% at 90% 100%, rgba(160,122,158,.16), transparent 70%),
+    var(--base-2);
+  /* a hairline of light where a band meets the next, so the layers read as stacked */
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(38,17,49,.06); }
+
+/* A single fine latitude line near the top edge, like a chart margin */
+.latitude { position: relative; isolation: isolate; }
+.latitude::after { content: ""; position: absolute; z-index: -1; left: max(16px, calc((100% - 1200px) / 2)); right: max(16px, calc((100% - 1200px) / 2)); top: calc(var(--sp) * .45); height: 1px; pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(38,17,49,.14) 0 2px, transparent 2px 10px); -webkit-mask-image: linear-gradient(90deg, #000, transparent 70%); mask-image: linear-gradient(90deg, #000, transparent 70%); }

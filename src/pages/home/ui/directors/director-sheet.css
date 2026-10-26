@@ -1,0 +1,42 @@
+/* Director profile sheet: a <dialog> that grows out of the pressed card (director-sheet.js).
+   The photo stays put; only the text column scrolls, with no visible bar: a soft fade at its foot says there is more. */
+.dir-sheet { width: min(940px, calc(100% - 32px)); height: min(680px, calc(100svh - 48px)); padding: 0; border: 0; border-radius: 32px; background: #fff; color: var(--ink); overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(26,11,34,.08), 0 8px 16px rgba(18,7,24,.12), 0 40px 80px rgba(18,7,24,.3); }
+.dir-sheet::backdrop { background: rgba(18,7,24,.5); backdrop-filter: blur(6px); }
+.sheet-card { display: grid; grid-template-columns: 5fr 7fr; height: 100%; outline: none; }
+/* card padding 12 + image radius 20 = sheet radius 32 */
+.sheet-img { position: relative; margin: 12px; border-radius: 20px; overflow: hidden; background: radial-gradient(120% 85% at 50% 18%, #FFFCF8 0%, #F6E6DE 55%, #EBD6D6 100%); }
+.sheet-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; filter: grayscale(1) contrast(1.04); }
+.sheet-body { position: relative; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 44px 48px 40px 20px;
+  scrollbar-width: none; -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(180deg, #000 calc(100% - 56px), transparent); }
+.sheet-body::-webkit-scrollbar { display: none; }
+.sheet-body.at-end { -webkit-mask-image: none; mask-image: none; }
+.sheet-name { font-size: clamp(1.7rem, 2.6vw, 2.2rem); padding-right: 40px; }
+.sheet-leads { margin-top: 14px; font-size: 1.05rem; }
+.sheet-bio { margin-top: 18px; padding-top: 18px; display: grid; gap: 10px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; }
+.sheet-bio li { position: relative; padding-left: 18px; }
+.sheet-bio li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+.sheet-proof { margin-top: 16px; color: var(--ink-2); font-size: 15px; }
+.sheet-areas { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+.sheet-areas li { font-size: 14px; padding: 5px 11px; border-radius: 999px; background: var(--peach-50); color: var(--ink-2); }
+.sheet-actions { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.sheet-actions .link-arrow { margin-top: 0; }
+/* close: a quiet ivory disc that never scrolls away */
+.sheet-close { position: absolute; z-index: 2; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+  background: rgba(255,248,243,.92); box-shadow: inset 0 0 0 1px var(--line); color: var(--plum-900); transition: background-color 150ms ease, transform 160ms var(--ease-ui); }
+.sheet-close:active { transform: scale(.92); }
+@media (hover: hover) and (pointer: fine) { .sheet-close:hover { background: var(--blush-100); } }
+.sheet-close svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+@media (prefers-reduced-motion: no-preference) {
+  .dir-sheet .sheet-body > * { animation: sheet-in 420ms var(--ease-out) both; animation-delay: 120ms; }
+}
+@keyframes sheet-in { from { opacity: 0; transform: translateY(8px); } }
+
+/* phones: the photo on top, the whole sheet scrolls (still without a bar) */
+@media (max-width: 700px) {
+  .dir-sheet { height: auto; max-height: calc(100svh - 32px); }
+  .sheet-card { grid-template-columns: 1fr; height: auto; max-height: calc(100svh - 32px); overflow-y: auto; scrollbar-width: none; }
+  .sheet-card::-webkit-scrollbar { display: none; }
+  .sheet-img { aspect-ratio: 4 / 3; margin: 10px 10px 0; border-radius: 22px; }
+  .sheet-body { overflow: visible; padding: 22px 22px 28px; -webkit-mask-image: none; mask-image: none; }
+}

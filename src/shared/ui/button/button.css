@@ -1,0 +1,40 @@
+/* Buttons and text links. Pill buttons; press scales to .97. */
+.btn {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 44px; padding: 10px 20px; border-radius: 999px; border: 0;
+  font: 600 16px/1.2 var(--font-body); text-decoration: none; cursor: pointer;
+  transition-property: transform, background-color, box-shadow, color;
+  transition-duration: 160ms; transition-timing-function: var(--ease-ui);
+}
+.btn:active { transform: scale(0.97); }
+.btn .i { transition: transform 200ms var(--ease-ui); }
+
+/* the poster's amber pill: every booking action */
+.btn-primary {
+  background: var(--amber); color: var(--amber-ink);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 1px 2px rgba(138,75,0,.25), 0 8px 20px rgba(204,120,0,.22);
+}
+/* quieter dark pill for secondary actions on light surfaces */
+.btn-dark { background: var(--plum-900); color: var(--ivory); }
+.btn-light { background: var(--white); color: var(--plum-900); }
+/* for use over film: a light outline on a blurred pane */
+.btn-glass { color: #fff; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.55); backdrop-filter: blur(8px); }
+
+.btn-sm { min-height: 40px; padding: 8px 16px; font-size: 15px; }
+.btn-lg { min-height: 56px; padding: 14px 28px; font-size: 17px; }
+.btn-block { width: 100%; }
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { background: #FFBC2E; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 2px 4px rgba(138,75,0,.25), 0 12px 28px rgba(204,120,0,.3); }
+  .btn-dark:hover { background: var(--plum-800); }
+  .btn-primary:hover .i { transform: translateX(3px); }
+  .btn-light:hover { background: var(--peach-50); }
+  .btn-glass:hover { background: rgba(255,255,255,.2); }
+}
+@media (prefers-reduced-transparency: reduce) { .btn-glass { backdrop-filter: none; } }
+
+.link-arrow { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; color: var(--violet-600); font-weight: 600; text-decoration: none; }
+.link-arrow .i { width: 18px; height: 18px; transition: transform 200ms var(--ease-ui); }
+@media (hover: hover) and (pointer: fine) { .link-arrow:hover .i { transform: translateX(3px); } .link-arrow:hover { text-decoration: underline; } }
+.link-amber { color: var(--amber); }

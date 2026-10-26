@@ -1,0 +1,9 @@
+/* Payments: one quiet line above the footer. */
+.paybar { background: var(--base-2); border-top: 1px solid var(--line); }
+.paybar-inner { display: flex; align-items: center; gap: 14px; padding: 16px 0; font-size: 14px; color: var(--ink-2); }
+.paybar-icon { flex: none; width: 22px; height: 22px; fill: none; stroke: var(--violet-600); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.paybar strong { color: var(--ink); font-weight: 600; }
+.paybar a { color: var(--ink); font-weight: 600; text-decoration-color: rgba(38,17,49,.3); }
+@media (hover: hover) and (pointer: fine) { .paybar a:hover { text-decoration-color: currentColor; } }
+.paybar-note { color: var(--ink-2); }
+@media (max-width: 600px) { .paybar-inner { align-items: flex-start; } }

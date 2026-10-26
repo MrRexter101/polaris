@@ -1,0 +1,21 @@
+/* Log line: the white card that overlaps the hero's foot. Directors' faces + what the package includes. */
+.log { position: relative; z-index: 3; margin-top: calc(var(--log-lift) * -1); }
+.log-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap;
+  background: #fff; border-radius: var(--r-lg); box-shadow: var(--shadow-card);
+  padding: 22px 28px;
+}
+.log-faces { display: flex; align-items: center; gap: 14px; font-size: 15px; color: var(--ink-2); max-width: 420px; }
+.log-faces strong { color: var(--plum-900); font-weight: 600; }
+.log-items { display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 15px; font-weight: 600; color: var(--plum-900); }
+.log-items li { display: inline-flex; align-items: center; gap: 8px; }
+.log-items svg { width: 12px; height: 12px; fill: var(--amber); }
+
+@media (max-width: 860px) {
+  .log-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .log { margin-top: 16px; } /* below the hero on phones, not over it */
+  .log-inner { padding: 20px; }
+  .log-items { display: grid; gap: 10px; }
+}
